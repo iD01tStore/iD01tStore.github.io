@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - iTechMobile Client Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen font-sans">
+
+    <div class="w-full max-w-sm p-8 space-y-6 bg-white rounded-xl shadow-lg text-center">
+        <div>
+            <h1 class="text-3xl font-extrabold text-gray-900">Client Portal</h1>
+            <p class="mt-2 text-gray-600">Sign in to access your services and orders.</p>
+        </div>
+
+        <button id="google-login-btn" class="w-full inline-flex justify-center items-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <svg class="w-5 h-5 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                <path fill="#4285F4" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12s5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24s8.955,20,20,20s20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
+                <path fill="#34A853" d="M43.611,20.083L43.595,20L24,20v8h11.303c-1.649,4.657-6.08,8-11.303,8V36c6.627,0,12-5.373,12-12c0-1.649-0.346-3.219-0.961-4.639l-5.657,5.657C30.654,25.842,31,27.341,31,29c0,2.485-1.023,4.735-2.697,6.303l5.657,5.657C38.947,36.053,44,30.268,44,24C44,22.659,43.862,21.35,43.611,20.083z"></path>
+                <path fill="#FBBC05" d="M9.961,14.303c-2.085,3.957-2.085,8.438,0,12.395l-5.657,5.657C1.053,28.046,0,26.268,0,24s1.053-4.046,3.303-5.657L9.961,14.303z"></path>
+                <path fill="#EA4335" d="M9.961,14.303l5.657-5.657C18.158,6.154,20.941,4,24,4v8c-2.485,0-4.735,1.023-6.303,2.697l-5.657-5.657C9.916,7.986,7.21,6,4.961,6C3.059,6,1.346,6.534,0,7.389l5.657,5.657C6.654,12.158,8.158,12,9.961,12c0.046,0,0.091,0.002,0.136,0.005L9.961,14.303z"></path>
+            </svg>
+            Sign in with Google
+        </button>
+
+        <div class="mt-4 text-xs text-gray-500">
+            <p>By signing in, you agree to our <a href="../docs/terms.html" class="underline hover:text-gray-700">Terms of Service</a>.</p>
+            <p class="mt-1">This is a mock login. In a real application, this would redirect to Google.</p>
+        </div>
+    </div>
+
+    <script src="./assets/js/auth.js"></script>
+</body>
+</html>
