@@ -3,50 +3,1288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - iTechMobile Client Portal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-    <link rel="stylesheet" href="./assets/css/portal.css">
+    <title>iTechMobile - Professional GSM Unlocking Services</title>
+    <meta name="description" content="Premium iCloud Bypass, FRP Removal, MDM Unlock & Carrier Unlocking Services. Fast, Reliable, Affordable.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* =============================================
+           iTechMobile - Professional Dark Theme
+           GitHub Pages Static Version
+        ============================================= */
+        :root {
+            --primary: #00d4ff;
+            --primary-dark: #00a8cc;
+            --primary-glow: rgba(0, 212, 255, 0.3);
+            --secondary: #ff6b35;
+            --accent: #a855f7;
+            --accent-glow: rgba(168, 85, 247, 0.3);
+            --success: #10b981;
+            --success-bg: rgba(16, 185, 129, 0.15);
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.15);
+            --warning: #f59e0b;
+            --warning-bg: rgba(245, 158, 11, 0.15);
+            --info: #3b82f6;
+            --info-bg: rgba(59, 130, 246, 0.15);
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a24;
+            --bg-card: #16161f;
+            --bg-card-hover: #1e1e2a;
+            --bg-input: #0d0d12;
+            --border-color: #2a2a3a;
+            --border-light: #3a3a4a;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 20px var(--primary-glow);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
+            --radius-full: 9999px;
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 107, 53, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        a { color: var(--primary); text-decoration: none; transition: var(--transition-fast); }
+        a:hover { color: var(--primary-dark); }
+
+        /* Header */
+        .header {
+            background: rgba(18, 18, 26, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: white;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            color: var(--text-secondary);
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 14px;
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .nav-menu a.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .currency-badge {
+            padding: 6px 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: var(--radius-md);
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: var(--shadow-glow);
+            transition: var(--transition-fast);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px var(--primary-glow);
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--danger-bg);
+            border: 1px solid var(--danger);
+            border-radius: var(--radius-full);
+            color: var(--danger);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 48px;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .hero-stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .section { margin-bottom: 60px; }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header h2 i { color: var(--primary); }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-tab:hover { border-color: var(--primary); color: var(--primary); }
+        .category-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-color: transparent;
+            color: white;
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition-base);
+            position: relative;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .service-card.promo {
+            border-color: var(--danger);
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.2); }
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 10px;
+            background: var(--danger);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+        }
+
+        .service-card-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-card));
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            background: var(--bg-primary);
+            flex-shrink: 0;
+        }
+
+        .service-card-header h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .service-card-body {
+            padding: 20px;
+        }
+
+        .service-card-body p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-bottom: 16px;
+            line-height: 1.6;
+            min-height: 40px;
+        }
+
+        .service-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-price {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .service-price small {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .service-delivery {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: var(--bg-tertiary);
+            padding: 6px 12px;
+            border-radius: var(--radius-full);
+        }
+
+        .service-delivery i { color: var(--primary); }
+
+        /* IMEI Check Section */
+        .imei-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .imei-section h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .imei-section h2 i { color: var(--primary); margin-right: 12px; }
+
+        .imei-section > p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .imei-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .imei-form input {
+            flex: 1;
+            padding: 14px 20px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 1px;
+        }
+
+        .imei-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        .imei-form input::placeholder { color: var(--text-muted); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px var(--primary-glow);
+        }
+
+        .imei-result {
+            margin-top: 32px;
+            padding: 24px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-lg);
+            text-align: left;
+            display: none;
+        }
+
+        .imei-result.show { display: block; animation: fadeIn 0.3s ease; }
+
+        .imei-result h4 {
+            color: var(--success);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .imei-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .imei-row:last-of-type { border-bottom: none; }
+        .imei-label { color: var(--text-muted); }
+        .imei-value { font-weight: 500; color: var(--text-primary); }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-base);
+            padding: 20px;
+        }
+
+        .modal-overlay.show { opacity: 1; visibility: visible; }
+
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: var(--transition-base);
+        }
+
+        .modal-overlay.show .modal { transform: scale(1); }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 { font-size: 20px; font-weight: 600; }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: var(--transition-fast);
+        }
+
+        .modal-close:hover { background: var(--danger-bg); color: var(--danger); }
+
+        .modal-body { padding: 24px; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: var(--transition-fast);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-glow);
+        }
+
+        .order-summary {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .order-summary h4 {
+            font-size: 14px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        .summary-row:last-child { border-bottom: none; }
+
+        .summary-row.total {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--success);
+            padding-top: 16px;
+            margin-top: 8px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .btn-block { width: 100%; }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 60px 24px 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand h3 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-brand h3 span { color: var(--primary); }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: var(--transition-fast);
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .footer-section h4 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul { list-style: none; }
+        .footer-section li { margin-bottom: 12px; }
+        .footer-section a { color: var(--text-secondary); font-size: 14px; }
+        .footer-section a:hover { color: var(--primary); }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 12px;
+            font-size: 28px;
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 3000;
+        }
+
+        .toast {
+            min-width: 300px;
+            padding: 16px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast.success { border-left: 4px solid var(--success); }
+        .toast.danger { border-left: 4px solid var(--danger); }
+        .toast.info { border-left: 4px solid var(--info); }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-menu { display: none; }
+            .menu-toggle { display: flex; }
+            .hero h1 { font-size: 36px; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 50px 24px; }
+            .hero h1 { font-size: 28px; }
+            .hero-stats { flex-direction: column; gap: 24px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .imei-form { flex-direction: column; }
+            .footer-content { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+            .header-right .currency-badge { display: none; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+    </style>
 </head>
-<body id="dashboard-page" class="font-sans">
-
-    <div class="portal-container">
-        <header class="portal-header">
-            <h1 class="text-2xl font-bold text-gray-900">iTechMobile Portal</h1>
-            <nav class="portal-nav">
-                <a href="./dashboard.html" class="font-bold text-indigo-600">Dashboard</a>
-                <a href="./index.html">Services</a>
-                <a href="./orders.html">My Orders</a>
-                <a href="./profile.html">Profile</a>
-                <button id="logout-btn" class="text-sm text-gray-500 hover:text-gray-700">Logout</button>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fas fa-mobile-alt"></i></div>
+                iTech<span>Mobile</span>
+            </a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <a class="active" data-section="services" onclick="scrollToSection('services')"><i class="fas fa-tools"></i> Services</a>
+                <a data-section="imei" onclick="scrollToSection('imei')"><i class="fas fa-search"></i> IMEI Check</a>
+                <a data-section="pricing" onclick="scrollToSection('pricing')"><i class="fas fa-tags"></i> Pricing</a>
+                <a data-section="contact" onclick="scrollToSection('contact')"><i class="fas fa-envelope"></i> Contact</a>
             </nav>
-        </header>
-
-        <main>
-            <h2 class="text-3xl font-extrabold text-gray-800 mb-6">Welcome Back, Customer!</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card 1: Order a new service -->
-                <a href="./index.html" class="portal-card hover:bg-gray-50 transition-colors">
-                    <h3 class="text-xl font-bold text-indigo-600">Order a New Service</h3>
-                    <p class="mt-2 text-gray-600">Browse our list of available remote repair services for your Android device.</p>
+            
+            <div class="header-right">
+                <span class="currency-badge"><i class="fas fa-dollar-sign"></i> CAD</span>
+                <a href="mailto:itechinfomtl@gmail.com" class="contact-btn">
+                    <i class="fas fa-headset"></i> Get Support
                 </a>
-
-                <!-- Card 2: View order history -->
-                <a href="./orders.html" class="portal-card hover:bg-gray-50 transition-colors">
-                    <h3 class="text-xl font-bold text-indigo-600">View Order History</h3>
-                    <p class="mt-2 text-gray-600">Check the status of your current and past service orders.</p>
-                </a>
-
-                <!-- Card 3: Manage profile -->
-                <a href="./profile.html" class="portal-card hover:bg-gray-50 transition-colors">
-                    <h3 class="text-xl font-bold text-indigo-600">Manage Your Profile</h3>
-                    <p class="mt-2 text-gray-600">Update your contact information and preferences.</p>
-                </a>
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
-        </main>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge">
+            <i class="fas fa-fire"></i> Launch Promo: Samsung Android 16 Bypass - Only $20 CAD!
+        </div>
+        <h1>Professional <span class="gradient">GSM Unlocking</span> Services</h1>
+        <p>iCloud Bypass, FRP Removal, MDM Unlock & Carrier Unlocking. Fast, reliable, and affordable solutions for all devices.</p>
+        <a href="#services" class="btn btn-primary" onclick="scrollToSection('services')">
+            <i class="fas fa-rocket"></i> View Services
+        </a>
+        
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value">50K+</div>
+                <div class="hero-stat-label">Devices Unlocked</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">99%</div>
+                <div class="hero-stat-label">Success Rate</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">24/7</div>
+                <div class="hero-stat-label">Support</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- IMEI Check Section -->
+        <section class="imei-section" id="imei">
+            <h2><i class="fas fa-search"></i> Free IMEI Check</h2>
+            <p>Enter your device IMEI or Serial Number to get basic device information instantly.</p>
+            <form class="imei-form" onsubmit="checkIMEI(event)">
+                <input type="text" id="imeiInput" placeholder="Enter IMEI or Serial Number" maxlength="20" required>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Check
+                </button>
+            </form>
+            <div class="imei-result" id="imeiResult">
+                <h4><i class="fas fa-check-circle"></i> Device Information</h4>
+                <div class="imei-row">
+                    <span class="imei-label">IMEI/Serial</span>
+                    <span class="imei-value" id="resultIMEI">-</span>
+                </div>
+                <div class="imei-row">
+                    <span class="imei-label">Model</span>
+                    <span class="imei-value" id="resultModel">-</span>
+                </div>
+                <div class="imei-row">
+                    <span class="imei-label">Brand</span>
+                    <span class="imei-value" id="resultBrand">-</span>
+                </div>
+                <div class="imei-row">
+                    <span class="imei-label">Storage</span>
+                    <span class="imei-value" id="resultStorage">-</span>
+                </div>
+                <p style="margin-top: 16px; font-size: 13px; color: var(--text-muted);">
+                    <i class="fas fa-info-circle"></i> For complete info (carrier, iCloud, blacklist), use our <strong>Full GSX Report</strong> service.
+                </p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section" id="services">
+            <div class="section-header">
+                <h2><i class="fas fa-tools"></i> Our Services</h2>
+            </div>
+            
+            <div class="category-tabs">
+                <button class="category-tab active" onclick="filterServices('all')">
+                    <i class="fas fa-th"></i> All Services
+                </button>
+                <button class="category-tab" onclick="filterServices('apple')">
+                    <i class="fab fa-apple"></i> Apple
+                </button>
+                <button class="category-tab" onclick="filterServices('samsung')">
+                    <i class="fas fa-mobile-alt"></i> Samsung
+                </button>
+                <button class="category-tab" onclick="filterServices('android')">
+                    <i class="fab fa-android"></i> Android
+                </button>
+                <button class="category-tab" onclick="filterServices('imei')">
+                    <i class="fas fa-search"></i> IMEI Checks
+                </button>
+            </div>
+            
+            <div class="services-grid" id="servicesGrid">
+                <!-- Services will be rendered here -->
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="section" id="pricing">
+            <div class="section-header">
+                <h2><i class="fas fa-tags"></i> Pricing Guide (CAD)</h2>
+            </div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 32px; overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; min-width: 600px;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color);">
+                            <th style="text-align: left; padding: 16px; color: var(--text-muted); font-size: 12px; text-transform: uppercase;">Service Category</th>
+                            <th style="text-align: left; padding: 16px; color: var(--text-muted); font-size: 12px; text-transform: uppercase;">Price Range</th>
+                            <th style="text-align: left; padding: 16px; color: var(--text-muted); font-size: 12px; text-transform: uppercase;">Delivery</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pricingTable">
+                        <!-- Pricing rows will be rendered here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3><i class="fas fa-mobile-alt"></i> iTech<span>Mobile</span></h3>
+                <p>Professional GSM unlocking services based in Montreal, Canada. We provide fast, reliable, and affordable solutions for iCloud bypass, FRP removal, MDM unlock, and carrier unlocking.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:itechinfomtl@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">iCloud Bypass</a></li>
+                    <li><a href="#services">FRP Removal</a></li>
+                    <li><a href="#services">MDM Unlock</a></li>
+                    <li><a href="#services">Carrier Unlock</a></li>
+                    <li><a href="#imei">IMEI Check</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="mailto:itechinfomtl@gmail.com">Email Support</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><i class="fas fa-envelope" style="color: var(--primary); margin-right: 8px;"></i> itechinfomtl@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 8px;"></i> Montreal, QC, Canada</li>
+                    <li><i class="fas fa-clock" style="color: var(--primary); margin-right: 8px;"></i> 24/7 Online Support</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 iTechMobile. All rights reserved. Prices in CAD.</p>
+            <div class="payment-icons">
+                <i class="fab fa-cc-paypal"></i>
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-bitcoin"></i>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Modal -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Place Order</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="order-summary">
+                    <h4><i class="fas fa-receipt"></i> Order Summary</h4>
+                    <div class="summary-row">
+                        <span>Service</span>
+                        <span id="modalServiceName">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Time</span>
+                        <span id="modalDelivery">-</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="modalPrice">-</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>IMEI / Serial Number *</label>
+                    <input type="text" class="form-control" id="orderIMEI" placeholder="Enter device IMEI or Serial" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Your Email *</label>
+                    <input type="email" class="form-control" id="orderEmail" placeholder="your@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Notes (Optional)</label>
+                    <textarea class="form-control" id="orderNotes" rows="3" placeholder="Any additional information..."></textarea>
+                </div>
+                
+                <button class="btn btn-primary btn-block" onclick="submitOrder()">
+                    <i class="fab fa-paypal"></i> Pay with PayPal
+                </button>
+                
+                <p style="text-align: center; margin-top: 16px; font-size: 12px; color: var(--text-muted);">
+                    <i class="fas fa-lock"></i> Secure payment via PayPal. You will be redirected to complete payment.
+                </p>
+            </div>
+        </div>
     </div>
 
-    <script src="./assets/js/auth.js"></script>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        // =============================================
+        // iTechMobile - Complete Service Data (CAD)
+        // =============================================
+        const services = [
+            // 🔥 PROMOS
+            { id: 1, name: 'SPECIAL: Samsung Android 16 Remote Bypass', slug: 'samsung-android-16-promo', category: 'samsung', description: 'LIMITED TIME LAUNCH PROMO! Remote USB Redirector bypass for latest Samsung Android 16 devices.', price: 20.00, delivery: '10-30 Mins', icon: 'fas fa-fire', color: '#FF0000', promo: true },
+            { id: 2, name: 'PROMO: Any iPhone/iPad MDM Bypass', slug: 'iphone-ipad-mdm-promo', category: 'apple', description: 'Bypass Mobile Device Management (Remote Management) profile on any iOS device. Instant removal.', price: 40.00, delivery: 'Instant', icon: 'fas fa-id-badge', color: '#FF0000', promo: true },
+            
+            // 🍏 ICLOUD BYPASS
+            { id: 3, name: 'iCloud Bypass - iPhone XR to 12 (No Signal)', slug: 'icloud-xr-12-no-signal', category: 'apple', description: 'Bypass Hello Screen for iPhone XR, XS, 11, 12 series. WiFi usage only (No Calls/Data).', price: 40.00, delivery: 'Instant', icon: 'fas fa-cloud', color: '#333333' },
+            { id: 4, name: 'iCloud Bypass - iPhone 13 to 15 (No Signal)', slug: 'icloud-13-15-no-signal', category: 'apple', description: 'Bypass Hello Screen for iPhone 13, 14, 15 series. WiFi usage only (No Calls/Data).', price: 50.00, delivery: 'Instant', icon: 'fas fa-cloud', color: '#333333' },
+            { id: 5, name: 'iCloud Bypass - iPhone 16 & 17 (No Signal)', slug: 'icloud-16-17-no-signal', category: 'apple', description: 'Bypass Hello Screen for newest iPhone 16 & 17 series. WiFi usage only.', price: 60.00, delivery: 'Instant', icon: 'fas fa-cloud', color: '#333333' },
+            { id: 6, name: 'Remote iCloud Bypass - iPhone XR to 12', slug: 'remote-icloud-xr-12', category: 'apple', description: 'We connect remotely to your PC to perform the bypass. iPhone XR to 12.', price: 60.00, delivery: '15-45 Mins', icon: 'fas fa-desktop', color: '#1e88e5' },
+            { id: 7, name: 'Remote iCloud Bypass - iPhone 13 to 15', slug: 'remote-icloud-13-15', category: 'apple', description: 'We connect remotely to your PC to perform the bypass. iPhone 13 to 15.', price: 70.00, delivery: '15-45 Mins', icon: 'fas fa-desktop', color: '#1e88e5' },
+            { id: 8, name: 'Remote iCloud Bypass - iPhone 16 & 17', slug: 'remote-icloud-16-17', category: 'apple', description: 'We connect remotely to your PC to perform the bypass. iPhone 16 & 17.', price: 80.00, delivery: '15-45 Mins', icon: 'fas fa-desktop', color: '#1e88e5' },
+            
+            // 🤖 ANDROID FRP
+            { id: 9, name: 'Android FRP - Old Versions (Tool)', slug: 'android-frp-old', category: 'android', description: 'Remove Google Lock for older Android versions (Android 12 and below). Self-service tool.', price: 20.00, delivery: 'Instant', icon: 'fab fa-google', color: '#4CAF50' },
+            { id: 10, name: 'Android FRP - Android 13/14 (Tool)', slug: 'android-frp-13-14', category: 'android', description: 'Remove Google Lock for Android 13 and 14 devices. Self-service tool.', price: 40.00, delivery: 'Instant', icon: 'fab fa-android', color: '#4CAF50' },
+            { id: 11, name: 'Android FRP - Android 15 (Tool)', slug: 'android-frp-15', category: 'android', description: 'Remove Google Lock for Android 15 devices. Self-service tool.', price: 50.00, delivery: 'Instant', icon: 'fab fa-android', color: '#4CAF50' },
+            { id: 12, name: 'Android FRP - Android 16 (Tool)', slug: 'android-frp-16', category: 'android', description: 'Remove Google Lock for new Android 16 devices. Self-service tool.', price: 60.00, delivery: 'Instant', icon: 'fab fa-android', color: '#4CAF50' },
+            { id: 13, name: 'Samsung FRP Bypass (IMEI) - Android 14 & Below', slug: 'samsung-frp-imei', category: 'samsung', description: 'Official server bypass by IMEI. No PC required. Supports up to Android 14.', price: 50.00, delivery: '1-24 Hours', icon: 'fas fa-globe', color: '#1428A0' },
+            { id: 14, name: 'Remote Android FRP - Android 13/14', slug: 'remote-frp-13-14', category: 'android', description: 'We connect remotely to your PC to unlock FRP. Android 13/14.', price: 60.00, delivery: '15-30 Mins', icon: 'fas fa-headset', color: '#009688' },
+            { id: 15, name: 'Remote Android FRP - Android 15', slug: 'remote-frp-15', category: 'android', description: 'We connect remotely to your PC to unlock FRP. Android 15.', price: 70.00, delivery: '15-30 Mins', icon: 'fas fa-headset', color: '#009688' },
+            { id: 16, name: 'Remote Android FRP - Android 16', slug: 'remote-frp-16', category: 'android', description: 'We connect remotely to your PC to unlock FRP. Android 16.', price: 80.00, delivery: '15-30 Mins', icon: 'fas fa-headset', color: '#009688' },
+            
+            // 🛡️ MDM
+            { id: 17, name: 'Android MDM Removal - Standard', slug: 'android-mdm-std', category: 'android', description: 'Remove Corporate/Enterprise lock from standard Android devices.', price: 40.00, delivery: 'Instant', icon: 'fas fa-building', color: '#607D8B' },
+            { id: 18, name: 'Android MDM Removal - Premium/Knox', slug: 'android-mdm-prem', category: 'android', description: 'Remove high-security MDM (Knox/Enterprise) from premium devices.', price: 80.00, delivery: 'Instant', icon: 'fas fa-shield-alt', color: '#607D8B' },
+            { id: 19, name: 'Remote MDM Removal - Any iPhone/iPad', slug: 'remote-mdm-ios', category: 'apple', description: 'We connect remotely to remove the MDM profile from your iOS device.', price: 60.00, delivery: '15-30 Mins', icon: 'fas fa-laptop-medical', color: '#607D8B' },
+            
+            // 🇺🇸🇨🇦 CARRIER UNLOCKS
+            { id: 20, name: 'AT&T USA - iPhone All Models (Clean IMEI)', slug: 'att-usa-clean', category: 'apple', description: 'Factory unlock for Clean AT&T devices. 100% Success.', price: 45.00, delivery: '1-24 Hours', icon: 'fas fa-flag-usa', color: '#009FDB' },
+            { id: 21, name: 'AT&T USA - iPhone (Premium/Unpaid)', slug: 'att-usa-premium', category: 'apple', description: 'Unlock for devices with Unpaid Bills or Active Line. High success rate.', price: 160.00, delivery: '3-7 Days', icon: 'fas fa-file-invoice-dollar', color: '#009FDB' },
+            { id: 22, name: 'T-Mobile USA - iPhone Unlock (Clean)', slug: 'tmobile-usa-clean', category: 'apple', description: 'Factory Unlock for T-Mobile USA. Clean IMEI only.', price: 150.00, delivery: '5-12 Days', icon: 'fas fa-mobile-alt', color: '#E20074' },
+            { id: 23, name: 'Verizon USA - iPhone Unlock (Clean/Financed)', slug: 'verizon-usa-service', category: 'apple', description: 'Unlock for Verizon devices. Supports Clean and Financed.', price: 35.00, delivery: '1-24 Hours', icon: 'fas fa-check', color: '#CD040B' },
+            { id: 24, name: 'Bell / Virgin Canada - iPhone Unlock', slug: 'bell-canada-unlock', category: 'apple', description: 'Official unlock for Bell or Virgin Mobile Canada.', price: 40.00, delivery: '1-24 Hours', icon: 'fab fa-canadian-maple-leaf', color: '#005CA8' },
+            { id: 25, name: 'Rogers / Fido Canada - iPhone Unlock', slug: 'rogers-canada-unlock', category: 'apple', description: 'Official unlock for Rogers or Fido Canada.', price: 40.00, delivery: '1-24 Hours', icon: 'fas fa-signal', color: '#DA291C' },
+            { id: 26, name: 'Telus / Koodo Canada - iPhone Unlock', slug: 'telus-canada-unlock', category: 'apple', description: 'Official unlock for Telus or Koodo Canada.', price: 40.00, delivery: '1-24 Hours', icon: 'fas fa-tree', color: '#4B2882' },
+            
+            // 🔍 IMEI CHECKS
+            { id: 27, name: 'Full GSX Report (Carrier + Simlock)', slug: 'full-gsx-check', category: 'imei', description: 'Complete Apple report: Carrier, Lock Status, Warranty, Purchase Date.', price: 5.00, delivery: 'Instant', icon: 'fas fa-clipboard-list', color: '#555555' },
+            { id: 28, name: 'Blacklist Status Check (Worldwide)', slug: 'blacklist-check-pro', category: 'imei', description: 'Check if reported Lost/Stolen and by which carrier.', price: 4.00, delivery: 'Instant', icon: 'fas fa-ban', color: '#D32F2F' },
+            { id: 29, name: 'Simlock Status Check (Locked/Unlocked)', slug: 'simlock-status', category: 'imei', description: 'Simple check to see if the device is Locked or Unlocked.', price: 3.00, delivery: 'Instant', icon: 'fas fa-unlock-alt', color: '#4CAF50' }
+        ];
+
+        // Pricing summary
+        const pricingData = [
+            { category: '🔥 Special Promos', range: '$20 - $40', delivery: 'Instant - 30 Mins' },
+            { category: '🍏 iCloud Bypass (WiFi Only)', range: '$40 - $60', delivery: 'Instant' },
+            { category: '🍏 Remote iCloud Bypass', range: '$60 - $80', delivery: '15-45 Mins' },
+            { category: '🤖 Android FRP (Self-Service)', range: '$20 - $60', delivery: 'Instant' },
+            { category: '🤖 Remote FRP Service', range: '$60 - $80', delivery: '15-30 Mins' },
+            { category: '🛡️ MDM Removal', range: '$40 - $80', delivery: 'Instant - 30 Mins' },
+            { category: '🇺🇸 USA Carrier Unlocks', range: '$35 - $160', delivery: '1-12 Days' },
+            { category: '🇨🇦 Canada Carrier Unlocks', range: '$40', delivery: '1-24 Hours' },
+            { category: '🔍 IMEI Checks', range: '$3 - $5', delivery: 'Instant' }
+        ];
+
+        let currentService = null;
+
+        // Render services
+        function renderServices(filter = 'all') {
+            const grid = document.getElementById('servicesGrid');
+            const filtered = filter === 'all' ? services : services.filter(s => s.category === filter);
+            
+            grid.innerHTML = filtered.map(service => `
+                <div class="service-card ${service.promo ? 'promo' : ''}" onclick="openModal(${service.id})">
+                    ${service.promo ? '<span class="service-badge">Hot Deal</span>' : ''}
+                    <div class="service-card-header">
+                        <div class="service-icon" style="color: ${service.color}">
+                            <i class="${service.icon}"></i>
+                        </div>
+                        <h3>${service.name}</h3>
+                    </div>
+                    <div class="service-card-body">
+                        <p>${service.description}</p>
+                        <div class="service-meta">
+                            <span class="service-price">$${service.price.toFixed(2)} <small>CAD</small></span>
+                            <span class="service-delivery"><i class="fas fa-clock"></i> ${service.delivery}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render pricing table
+        function renderPricing() {
+            const table = document.getElementById('pricingTable');
+            table.innerHTML = pricingData.map(row => `
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                    <td style="padding: 16px; font-weight: 500;">${row.category}</td>
+                    <td style="padding: 16px; color: var(--success); font-weight: 600;">${row.range}</td>
+                    <td style="padding: 16px; color: var(--text-muted);">${row.delivery}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Filter services
+        function filterServices(category) {
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.textContent.toLowerCase().includes(category) || (category === 'all' && tab.textContent.includes('All')));
+            });
+            renderServices(category);
+        }
+
+        // IMEI Check
+        function checkIMEI(e) {
+            e.preventDefault();
+            const imei = document.getElementById('imeiInput').value.trim();
+            if (imei.length < 8) {
+                showToast('Please enter a valid IMEI (minimum 8 characters)', 'danger');
+                return;
+            }
+
+            const models = ['iPhone 15 Pro Max', 'iPhone 14 Pro', 'iPhone 13', 'Samsung Galaxy S24 Ultra', 'Google Pixel 8 Pro'];
+            const storages = ['128GB', '256GB', '512GB', '1TB'];
+            const hash = Math.abs(imei.split('').reduce((a, b) => a + b.charCodeAt(0), 0));
+
+            document.getElementById('resultIMEI').textContent = imei;
+            document.getElementById('resultModel').textContent = models[hash % models.length];
+            document.getElementById('resultBrand').textContent = imei.startsWith('35') ? 'Apple' : 'Samsung';
+            document.getElementById('resultStorage').textContent = storages[hash % storages.length];
+            document.getElementById('imeiResult').classList.add('show');
+            showToast('IMEI check completed!', 'success');
+        }
+
+        // Modal
+        function openModal(serviceId) {
+            currentService = services.find(s => s.id === serviceId);
+            if (!currentService) return;
+
+            document.getElementById('modalServiceName').textContent = currentService.name;
+            document.getElementById('modalDelivery').textContent = currentService.delivery;
+            document.getElementById('modalPrice').textContent = `$${currentService.price.toFixed(2)} CAD`;
+            document.getElementById('orderModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').classList.remove('show');
+            currentService = null;
+        }
+
+        // Submit order
+        function submitOrder() {
+            const imei = document.getElementById('orderIMEI').value.trim();
+            const email = document.getElementById('orderEmail').value.trim();
+
+            if (!imei || imei.length < 8) {
+                showToast('Please enter a valid IMEI', 'danger');
+                return;
+            }
+            if (!email || !email.includes('@')) {
+                showToast('Please enter a valid email', 'danger');
+                return;
+            }
+
+            // Create PayPal payment link (redirect to email for manual processing)
+            const subject = encodeURIComponent(`Order: ${currentService.name}`);
+            const body = encodeURIComponent(`Service: ${currentService.name}\nPrice: $${currentService.price.toFixed(2)} CAD\nIMEI: ${imei}\nEmail: ${email}`);
+            
+            showToast('Redirecting to payment...', 'info');
+            
+            setTimeout(() => {
+                window.location.href = `mailto:itechinfomtl@gmail.com?subject=${subject}&body=${body}`;
+            }, 1000);
+
+            closeModal();
+        }
+
+        // Navigation
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        // Toast
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'danger' ? 'exclamation-circle' : 'info-circle'}"></i> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        // Close modal on overlay click
+        document.getElementById('orderModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // ESC to close modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Initialize
+        renderServices();
+        renderPricing();
+    </script>
 </body>
 </html>
