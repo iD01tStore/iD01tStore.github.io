@@ -1576,6 +1576,15 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
+        
+        // Add scopes for better user info
+        provider.addScope('email');
+        provider.addScope('profile');
+        
+        // Set custom parameters
+        provider.setCustomParameters({
+            prompt: 'select_account'
+        });
 
         window.firebaseAuth = auth;
         window.firebaseDb = db;
@@ -1592,8 +1601,13 @@
         window.where = where;
         window.orderBy = orderBy;
         window.getDocs = getDocs;
+        
+        console.log('[Firebase] Initialized successfully');
+        console.log('[Firebase] Auth domain:', firebaseConfig.authDomain);
 
         onAuthStateChanged(auth, async (user) => {
+            console.log('[Auth] State changed:', user ? user.email : 'No user');
+            
             if (user) {
                 window.currentUser = {
                     uid: user.uid,
@@ -1624,19 +1638,28 @@
                     showDashboard();
                     showToast('Welcome, ' + (user.displayName || 'User').split(' ')[0] + '!', 'success');
                 } catch (error) {
-                    console.error('Error:', error);
+                    console.error('[Firestore] Error:', error);
+                    // Still allow login even if Firestore fails
+                    closeLogin();
+                    showDashboard();
+                    showToast('Logged in (offline mode)', 'success');
                 }
+            } else {
+                console.log('[Auth] No user, showing landing page');
             }
             showLoading(false);
         });
 
         async function loadUserOrders(uid) {
+            console.log('[Firestore] Loading orders for:', uid);
             try {
                 const ordersRef = collection(db, 'repair_orders');
                 const q = query(ordersRef, where('userId', '==', uid), orderBy('createdAt', 'desc'));
                 const snapshot = await getDocs(q);
                 window.userOrders = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                console.log('[Firestore] Loaded', window.userOrders.length, 'orders');
             } catch (error) {
+                console.error('[Firestore] Error loading orders:', error);
                 window.userOrders = [];
             }
         }
@@ -1671,17 +1694,62 @@
 
         // Auth
         window.signInWithGoogle = async function() {
+            console.log('[Auth] Starting Google Sign-In...');
             showLoading(true, 'Verifying security...');
-            const token = await executeRecaptcha('LOGIN');
             
-            showLoading(true, 'Signing in...');
             try {
-                await window.signInWithPopup(window.firebaseAuth, window.googleProvider);
-            } catch (error) {
-                if (error.code !== 'auth/popup-closed-by-user') {
-                    showToast('Login failed: ' + error.message, 'error');
+                // Execute reCAPTCHA (non-blocking)
+                const token = await executeRecaptcha('LOGIN');
+                console.log('[Auth] reCAPTCHA token obtained:', token ? 'yes' : 'no');
+                
+                showLoading(true, 'Signing in...');
+                
+                // Check if Firebase is initialized
+                if (!window.firebaseAuth) {
+                    throw new Error('Firebase not initialized. Please refresh the page.');
                 }
+                
+                if (!window.googleProvider) {
+                    throw new Error('Google provider not configured.');
+                }
+                
+                console.log('[Auth] Calling signInWithPopup...');
+                const result = await window.signInWithPopup(window.firebaseAuth, window.googleProvider);
+                console.log('[Auth] Sign-in successful:', result.user.email);
+                
+            } catch (error) {
+                console.error('[Auth] Sign-in error:', error);
                 showLoading(false);
+                
+                // Handle specific error codes
+                switch (error.code) {
+                    case 'auth/popup-closed-by-user':
+                        // User closed popup, no need to show error
+                        console.log('[Auth] User closed popup');
+                        break;
+                    case 'auth/popup-blocked':
+                        showToast('Popup was blocked. Please allow popups for this site.', 'error');
+                        break;
+                    case 'auth/cancelled-popup-request':
+                        console.log('[Auth] Popup request cancelled');
+                        break;
+                    case 'auth/unauthorized-domain':
+                        showToast('This domain is not authorized. Contact administrator.', 'error');
+                        console.error('[Auth] Domain not authorized in Firebase Console!');
+                        break;
+                    case 'auth/operation-not-allowed':
+                        showToast('Google Sign-In is not enabled. Contact administrator.', 'error');
+                        console.error('[Auth] Google provider not enabled in Firebase Console!');
+                        break;
+                    case 'auth/network-request-failed':
+                        showToast('Network error. Please check your connection.', 'error');
+                        break;
+                    case 'auth/internal-error':
+                        showToast('Authentication error. Please try again.', 'error');
+                        break;
+                    default:
+                        showToast('Login failed: ' + (error.message || 'Unknown error'), 'error');
+                }
             }
         };
 
