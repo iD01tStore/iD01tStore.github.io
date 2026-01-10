@@ -52,6 +52,97 @@
         .hidden { display: none !important; }
         .grecaptcha-badge { visibility: hidden !important; }
 
+        /* Error Modal Styles */
+        .error-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+
+        .error-content {
+            background: var(--bg-card);
+            border: 2px solid var(--danger);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(239, 68, 68, 0.3);
+        }
+
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 24px;
+        }
+
+        .error-content h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            text-align: center;
+            color: var(--danger);
+        }
+
+        .error-content p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .error-details {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: var(--danger);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .error-actions button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .error-actions .btn-primary-action {
+            background: var(--primary);
+            color: white;
+        }
+
+        .error-actions .btn-secondary-action {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
         /* === NAVIGATION === */
         .navbar {
             position: fixed;
@@ -1625,8 +1716,6 @@
         // ============================================
         // BOOTSTRAP CONFIG (PUBLIC - Auth only)
         // ============================================
-        // This minimal config only allows authentication.
-        // All other secrets are fetched post-login from Firestore.
         const bootstrapConfig = {
             apiKey: "AIzaSyAs21-ao_o3v1Zj5Sl4EgC05Yl1rTpDLO0",
             authDomain: "itechmobile-2ac27.firebaseapp.com",
@@ -1667,6 +1756,49 @@
         console.log('[Firebase] Bootstrap initialized (Auth only)');
 
         // ============================================
+        // ENHANCED ERROR DISPLAY
+        // ============================================
+        function showConfigError(error) {
+            const errorHtml = `
+                <div class="error-modal" id="configErrorModal">
+                    <div class="error-content">
+                        <div class="error-icon">❌</div>
+                        <h2>Configuration Error</h2>
+                        <p>Unable to load the secure configuration from Firestore. This usually means the configuration document hasn't been set up yet.</p>
+                        
+                        <div class="error-details">
+                            <strong>Error Code:</strong> ${error.code || 'UNKNOWN'}<br>
+                            <strong>Error Message:</strong> ${error.message}
+                        </div>
+                        
+                        <p><strong>What this means:</strong></p>
+                        <ul style="text-align: left; margin: 12px 0; padding-left: 20px; color: var(--text-secondary);">
+                            ${error.code === 'permission-denied' ? 
+                                '<li>Firestore Security Rules are blocking access</li><li>The document exists but your account doesn\'t have permission</li><li>Security rules may not be published correctly</li>' : 
+                            error.code === 'not-found' || !error.code ? 
+                                '<li>The configuration document "secure_config/app_secrets" does not exist in Firestore</li><li>You need to create this document manually in the Firebase Console</li>' : 
+                                '<li>An unexpected error occurred while fetching configuration</li><li>Check your internet connection and Firebase project status</li>'}
+                        </ul>
+                        
+                        <p><strong>How to fix:</strong></p>
+                        <p style="color: var(--text-secondary);">Use the diagnostic tool to identify and fix the issue step-by-step.</p>
+                        
+                        <div class="error-actions">
+                            <button class="btn-primary-action" onclick="window.open('firestore-config-diagnostic.html', '_blank')">
+                                Open Diagnostic Tool
+                            </button>
+                            <button class="btn-secondary-action" onclick="document.getElementById('configErrorModal').remove(); showLanding();">
+                                Return to Home
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', errorHtml);
+        }
+
+        // ============================================
         // FETCH SECURE CONFIG FROM FIRESTORE
         // ============================================
         async function fetchSecureConfig(user) {
@@ -1677,21 +1809,25 @@
                 const configSnap = await getDoc(configRef);
                 
                 if (!configSnap.exists()) {
-                    throw new Error('Configuration document not found. Contact administrator.');
+                    const error = new Error('Configuration document not found. The document "secure_config/app_secrets" does not exist in your Firestore database.');
+                    error.code = 'not-found';
+                    throw error;
                 }
                 
                 const config = configSnap.data();
                 
                 // Validate configuration structure
                 if (!config.firebase || !config.recaptcha) {
-                    throw new Error('Invalid configuration structure. Contact administrator.');
+                    const error = new Error('Invalid configuration structure. The document is missing required fields.');
+                    error.code = 'invalid-structure';
+                    throw error;
                 }
                 
                 // Store in global scope
                 window.secureConfig = config;
                 window.configLoaded = true;
                 
-                // Now that we have the full config, update the reCAPTCHA key
+                // Update the reCAPTCHA key
                 if (config.recaptcha && config.recaptcha.siteKey) {
                     window.RECAPTCHA_SITE_KEY = config.recaptcha.siteKey;
                     console.log('[SecureConfig] reCAPTCHA key loaded');
@@ -1705,9 +1841,7 @@
             } catch (error) {
                 console.error('[SecureConfig] Failed to fetch configuration:', error);
                 window.configLoaded = false;
-                
-                // Critical failure - user cannot proceed
-                throw new Error(`Configuration error: ${error.message}`);
+                throw error;
             }
         }
 
@@ -1763,7 +1897,8 @@
                     // Sign out user on critical failure
                     await signOut(auth);
                     
-                    showToast('Failed to load configuration. Please try again or contact support.', 'error');
+                    // Show detailed error modal
+                    showConfigError(error);
                     showLanding();
                 }
             } else {
@@ -1814,7 +1949,6 @@
         // ============================================
         async function executeRecaptcha(action) {
             return new Promise((resolve) => {
-                // Check if config is loaded
                 if (!window.configLoaded || !window.RECAPTCHA_SITE_KEY) {
                     console.warn('[reCAPTCHA] Config not loaded yet, skipping verification');
                     resolve(null);
@@ -1848,13 +1982,11 @@
             showLoading(true, 'Verifying security...');
             
             try {
-                // Execute reCAPTCHA (non-blocking)
                 const token = await executeRecaptcha('LOGIN');
                 console.log('[Auth] reCAPTCHA token obtained:', token ? 'yes' : 'no');
                 
                 showLoading(true, 'Signing in...');
                 
-                // Check if Firebase is initialized
                 if (!window.firebaseAuth) {
                     throw new Error('Firebase not initialized. Please refresh the page.');
                 }
@@ -1871,10 +2003,8 @@
                 console.error('[Auth] Sign-in error:', error);
                 showLoading(false);
                 
-                // Handle specific error codes
                 switch (error.code) {
                     case 'auth/popup-closed-by-user':
-                        // User closed popup, no need to show error
                         console.log('[Auth] User closed popup');
                         break;
                     case 'auth/popup-blocked':
@@ -2019,7 +2149,6 @@
             
             const token = await executeRecaptcha('DIAGNOSTIC');
             
-            // Simulate AI diagnostic
             setTimeout(async () => {
                 const devices = ['Samsung Galaxy S24', 'Samsung Galaxy A54', 'Pixel 8 Pro', 'OnePlus 12'];
                 const issues = ['FRP Lock', 'Boot Loop', 'MDM Profile', 'Software Corruption'];
@@ -2039,7 +2168,6 @@
                 document.getElementById('resultPrice').textContent = '$' + price.toFixed(2) + ' CAD';
                 document.getElementById('diagResult').classList.remove('hidden');
                 
-                // Save order
                 if (window.currentUser) {
                     try {
                         const order = {
@@ -2138,7 +2266,7 @@
         };
 
         window.toggleMobileMenu = function() {
-            // Mobile menu implementation (to be added)
+            // Mobile menu implementation
         };
 
         // ============================================
