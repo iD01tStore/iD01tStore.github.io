@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUDIOBOOKS // DJ iD01t - Audio Archive</title>
+    <meta name="description" content="DJ iD01t - Encrypted Audio Archive // Technical Narrations & Underground Literature">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚠</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-cyan: #00ff9f;
+            --primary-green: #00ff41;
+            --dark-bg: #0a0e1a;
+            --darker-bg: #050810;
+            --electric-blue: #00d4ff;
+            --glitch-pink: #ff0080;
+            --text-light: #e0fff0;
+            --border-cyan: #00d9a3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', 'Courier New', monospace;
+            background: var(--darker-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 159, 0.03) 0px,
+                transparent 1px,
+                transparent 2px,
+                rgba(0, 255, 159, 0.03) 3px
+            );
+            pointer-events: none;
+            z-index: 9999;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100px); }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 159, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 159, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-cyan);
+            text-decoration: none;
+            text-shadow: 0 0 10px var(--primary-cyan);
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .nav-logo::before {
+            content: '> ';
+            color: var(--primary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .nav-links a::before {
+            content: '// ';
+            color: var(--primary-green);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-cyan);
+            text-shadow: 0 0 10px var(--primary-cyan);
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
+        }
+
+        .nav-links a.active {
+            color: var(--primary-cyan);
+            text-shadow: 0 0 10px var(--primary-cyan);
+        }
+
+        .main-content {
+            padding: 8rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-size: 4rem;
+            color: var(--primary-cyan);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px var(--primary-cyan);
+            font-family: 'Share Tech Mono', monospace;
+            text-align: center;
+        }
+
+        .page-title::before {
+            content: '// ';
+            color: var(--primary-green);
+        }
+
+        .terminal-line {
+            font-size: 1.2rem;
+            color: var(--primary-green);
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+
+        .terminal-line::before {
+            content: '> ';
+            color: var(--primary-cyan);
+        }
+
+        .audio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .audio-card {
+            background: rgba(10, 14, 26, 0.9);
+            border: 2px solid var(--border-cyan);
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 159, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .audio-card:hover {
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 30px rgba(0, 255, 159, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .audio-card:hover::before {
+            left: 100%;
+        }
+
+        .audio-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .audio-title {
+            font-size: 1.3rem;
+            color: var(--primary-cyan);
+            margin-bottom: 0.5rem;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .audio-title::before {
+            content: '> ';
+            color: var(--primary-green);
+        }
+
+        .audio-narrator {
+            color: var(--electric-blue);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .audio-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .audio-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 255, 159, 0.2);
+        }
+
+        .audio-player {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-cyan);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .play-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-cyan);
+            border: none;
+            border-radius: 50%;
+            color: var(--darker-bg);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .play-btn:hover {
+            box-shadow: 0 0 20px var(--primary-cyan);
+            transform: scale(1.1);
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(0, 255, 159, 0.2);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-cyan);
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        .time-display {
+            font-size: 0.8rem;
+            color: var(--primary-green);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--primary-cyan);
+            color: var(--primary-cyan);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-family: 'Roboto Mono', monospace;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--primary-cyan);
+            color: var(--darker-bg);
+            box-shadow: 0 0 20px var(--primary-cyan);
+        }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: rgba(10, 14, 26, 0.9);
+            border: 2px solid var(--border-cyan);
+            color: var(--text-light);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-cyan);
+            color: var(--darker-bg);
+            border-color: var(--primary-cyan);
+        }
+
+        .footer {
+            background: rgba(5, 8, 16, 0.95);
+            border-top: 2px solid var(--primary-cyan);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-text {
+            color: var(--text-light);
+        }
+
+        .footer-text::before {
+            content: '// ';
+            color: var(--primary-green);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary-cyan);
+        }
+
+        @media (max-width: 968px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .audio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">DJ_iD01t</a>
+            <ul class="nav-links">
+                <li><a href="music.html">MUSIC</a></li>
+                <li><a href="ebooks.html">EBOOKS</a></li>
+                <li><a href="audiobooks.html" class="active">AUDIOBOOKS</a></li>
+                <li><a href="index.html#about">ABOUT</a></li>
+                <li><a href="index.html#contact">CONTACT</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="page-title">AUDIO_ARCHIVE</h1>
+        <p class="terminal-line">STREAMING_PROTOCOLS_ACTIVE</p>
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="filter-btn active" data-category="all">ALL_FILES</button>
+            <button class="filter-btn" data-category="technical">TECHNICAL</button>
+            <button class="filter-btn" data-category="fiction">FICTION</button>
+            <button class="filter-btn" data-category="manifesto">MANIFESTOS</button>
+            <button class="filter-btn" data-category="documentary">DOCUMENTARIES</button>
+        </div>
+
+        <!-- Audio Grid -->
+        <div class="audio-grid">
+            <!-- Audiobook 1 -->
+            <div class="audio-card" data-category="technical">
+                <div class="audio-icon">🎧</div>
+                <h3 class="audio-title">Ghost in the Wires</h3>
+                <p class="audio-narrator">Narrated by Ray Porter</p>
+                <p class="audio-description">
+                    Kevin Mitnick's thrilling autobiography of his life as the world's most wanted hacker. 
+                    From phone phreaking to social engineering exploits.
+                </p>
+                <div class="audio-meta">
+                    <span>Duration: 12h 41m</span>
+                    <span>Format: MP3</span>
+                </div>
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="time-display">0:00 / 12:41:00</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            </div>
+
+            <!-- Audiobook 2 -->
+            <div class="audio-card" data-category="fiction">
+                <div class="audio-icon">🎧</div>
+                <h3 class="audio-title">Neuromancer</h3>
+                <p class="audio-narrator">Narrated by Robertson Dean</p>
+                <p class="audio-description">
+                    William Gibson's cyberpunk masterpiece. Case, a washed-up computer hacker, 
+                    is hired for one last job in cyberspace.
+                </p>
+                <div class="audio-meta">
+                    <span>Duration: 10h 31m</span>
+                    <span>Format: MP3</span>
+                </div>
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="time-display">0:00 / 10:31:00</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            </div>
+
+            <!-- Audiobook 3 -->
+            <div class="audio-card" data-category="technical">
+                <div class="audio-icon">🎧</div>
+                <h3 class="audio-title">The Art of Deception</h3>
+                <p class="audio-narrator">Narrated by Marc Cashman</p>
+                <p class="audio-description">
+                    Kevin Mitnick reveals the techniques of social engineering. 
+                    How hackers exploit human psychology to breach security.
+                </p>
+                <div class="audio-meta">
+                    <span>Duration: 8h 17m</span>
+                    <span>Format: MP3</span>
+                </div>
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="time-display">0:00 / 8:17:00</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            </div>
+
+            <!-- Audiobook 4 -->
+            <div class="audio-card" data-category="fiction">
+                <div class="audio-icon">🎧</div>
+                <h3 class="audio-title">Snow Crash</h3>
+                <p class="audio-narrator">Narrated by Jonathan Davis</p>
+                <p class="audio-description">
+                    Neal Stephenson's vision of a future America where pizza delivery and hacking 
+                    collide in the Metaverse.
+                </p>
+                <div class="audio-meta">
+                    <span>Duration: 17h 3m</span>
+                    <span>Format: MP3</span>
+                </div>
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="time-display">0:00 / 17:03:00</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            </div>
+
+            <!-- Audiobook 5 -->
+            <div class="audio-card" data-category="documentary">
+                <div class="audio-icon">🎧</div>
+                <h3 class="audio-title">The Cuckoo's Egg</h3>
+                <p class="audio-narrator">Narrated by Will Damron</p>
+                <p class="audio-description">
+                    Clifford Stoll's true story of tracking down a KGB hacker through the internet. 
+                    A pioneering tale of cybersecurity.
+                </p>
+                <div class="audio-meta">
+                    <span>Duration: 11h 29m</span>
+                    <span>Format: MP3</span>
+                </div>
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="time-display">0:00 / 11:29:00</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            </div>
+
+            <!-- Audiobook 6 -->
+            <div class="audio-card" data-category="manifesto">
+                <div class="audio-icon">🎧</div>
+                <h3 class="audio-title">The Conscience of a Hacker</h3>
+                <p class="audio-narrator">Narrated by Synthetic Voice</p>
+                <p class="audio-description">
+                    The legendary Hacker Manifesto by The Mentor. 
+                    "We explore... and you call us criminals."
+                </p>
+                <div class="audio-meta">
+                    <span>Duration: 0h 8m</span>
+                    <span>Format: MP3</span>
+                </div>
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="time-display">0:00 / 0:08:00</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            </div>
+
+            <!-- Audiobook 7 -->
+            <div class="audio-card" data-category="technical">
+                <div class="audio-icon">🎧</div>
+                <h3 class="audio-title">Countdown to Zero Day</h3>
+                <p class="audio-narrator">Narrated by Joe Ochman</p>
+                <p class="audio-description">
+                    Kim Zetter's investigation into Stuxnet, the world's first digital weapon. 
+                    The story of cyber warfare.
+                </p>
+                <div class="audio-meta">
+                    <span>Duration: 16h 49m</span>
+                    <span>Format: MP3</span>
+                </div>
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="time-display">0:00 / 16:49:00</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            </div>
+
+            <!-- Audiobook 8 -->
+            <div class="audio-card" data-category="fiction">
+                <div class="audio-icon">🎧</div>
+                <h3 class="audio-title">Daemon</h3>
+                <p class="audio-narrator">Narrated by Jeff Gurner</p>
+                <p class="audio-description">
+                    Daniel Suarez's techno-thriller about an AI daemon that begins to reshape society 
+                    after its creator's death.
+                </p>
+                <div class="audio-meta">
+                    <span>Duration: 18h 19m</span>
+                    <span>Format: MP3</span>
+                </div>
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="time-display">0:00 / 18:19:00</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            </div>
+
+            <!-- Audiobook 9 -->
+            <div class="audio-card" data-category="documentary">
+                <div class="audio-icon">🎧</div>
+                <h3 class="audio-title">We Are Anonymous</h3>
+                <p class="audio-narrator">Narrated by Jay Snyder</p>
+                <p class="audio-description">
+                    Parmy Olson's inside story of Anonymous, LulzSec, and the global cyber insurgency. 
+                    The rise of hacktivism.
+                </p>
+                <div class="audio-meta">
+                    <span>Duration: 13h 44m</span>
+                    <span>Format: MP3</span>
+                </div>
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <button class="play-btn">▶</button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="time-display">0:00 / 13:44:00</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">DJ iD01t // AUDIO_ARCHIVE // 2026</p>
+        <p style="color: var(--primary-green); font-size: 0.8rem; margin-top: 1rem;">
+            © 2026 DJ iD01t. All systems compromised. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Category filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const audioCards = document.querySelectorAll('.audio-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const category = this.getAttribute('data-category');
+
+                audioCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Simple play button interaction (visual only)
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.textContent === '▶') {
+                    this.textContent = '⏸';
+                } else {
+                    this.textContent = '▶';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
