@@ -103,11 +103,6 @@
             font-family: 'Share Tech Mono', monospace;
         }
 
-        .nav-logo::before {
-            content: '> ';
-            color: var(--primary-green);
-        }
-
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -119,22 +114,6 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: all 0.3s;
-        }
-
-        .nav-links a::before {
-            content: '// ';
-            color: var(--primary-green);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-cyan);
-            text-shadow: 0 0 10px var(--primary-cyan);
-        }
-
-        .nav-links a:hover::before {
-            opacity: 1;
         }
 
         .nav-links a.active {
@@ -160,24 +139,6 @@
             text-align: center;
         }
 
-        .page-title::before {
-            content: '// ';
-            color: var(--primary-green);
-        }
-
-        .terminal-line {
-            font-size: 1.2rem;
-            color: var(--primary-green);
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-            text-align: center;
-        }
-
-        .terminal-line::before {
-            content: '> ';
-            color: var(--primary-cyan);
-        }
-
         .library-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -194,25 +155,10 @@
             overflow: hidden;
         }
 
-        .book-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 159, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
         .book-card:hover {
             border-color: var(--primary-cyan);
             box-shadow: 0 0 30px rgba(0, 255, 159, 0.3);
             transform: translateY(-5px);
-        }
-
-        .book-card:hover::before {
-            left: 100%;
         }
 
         .book-icon {
@@ -226,11 +172,6 @@
             color: var(--primary-cyan);
             margin-bottom: 0.5rem;
             font-family: 'Share Tech Mono', monospace;
-        }
-
-        .book-title::before {
-            content: '> ';
-            color: var(--primary-green);
         }
 
         .book-author {
@@ -301,11 +242,9 @@
             font-family: 'Roboto Mono', monospace;
         }
 
-        .filter-btn:hover,
         .filter-btn.active {
             background: var(--primary-cyan);
             color: var(--darker-bg);
-            border-color: var(--primary-cyan);
         }
 
         .footer {
@@ -315,15 +254,6 @@
             text-align: center;
             position: relative;
             z-index: 2;
-        }
-
-        .footer-text {
-            color: var(--text-light);
-        }
-
-        .footer-text::before {
-            content: '// ';
-            color: var(--primary-green);
         }
 
         .mobile-toggle {
@@ -341,32 +271,12 @@
         }
 
         @media (max-width: 968px) {
-            .page-title {
-                font-size: 2.5rem;
-            }
-
-            .library-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-toggle {
-                display: flex;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .page-title {
-                font-size: 2rem;
-            }
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">DJ_iD01t</a>
@@ -378,203 +288,97 @@
                 <li><a href="index.html#contact">CONTACT</a></li>
             </ul>
             <div class="mobile-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="main-content">
         <h1 class="page-title">DIGITAL_LIBRARY</h1>
-        <p class="terminal-line">ENCRYPTED_ARCHIVES_ACCESSIBLE</p>
-
-        <!-- Category Filter -->
+        
         <div class="category-filter">
             <button class="filter-btn active" data-category="all">ALL_FILES</button>
-            <button class="filter-btn" data-category="hacking">HACKING</button>
-            <button class="filter-btn" data-category="security">SECURITY</button>
-            <button class="filter-btn" data-category="programming">PROGRAMMING</button>
-            <button class="filter-btn" data-category="manifesto">MANIFESTOS</button>
+            <button class="filter-btn" data-category="tech">TECH_MASTERY</button>
+            <button class="filter-btn" data-category="growth">SELF_GROWTH</button>
+            <button class="filter-btn" data-category="history">HISTORY_CULTURE</button>
         </div>
 
-        <!-- Library Grid -->
         <div class="library-grid">
-            <!-- Book 1 -->
-            <div class="book-card" data-category="hacking">
-                <div class="book-icon">📕</div>
-                <h3 class="book-title">The Art of Exploitation</h3>
-                <p class="book-author">by Jon Erickson</p>
-                <p class="book-description">
-                    A comprehensive guide to hacking techniques, buffer overflows, and exploitation methodologies. 
-                    Essential reading for understanding system vulnerabilities.
-                </p>
-                <div class="book-meta">
-                    <span>Format: PDF</span>
-                    <span>Size: 8.5 MB</span>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            <!-- Guillaume Lessard Tech Works -->
+            <div class="book-card" data-category="tech">
+                <div class="book-icon">⚛️</div>
+                <h3 class="book-title">Mastering Quantum Error Correction</h3>
+                <p class="book-author">by Guillaume Lessard</p>
+                <p class="book-description">Safeguarding the future of computation. Part of the Technology Mastery Series by iD01t Productions.</p>
+                <div class="book-meta"><span>Year: 2025</span><span>Series: Tech Mastery</span></div>
+                <a href="https://books.google.com/books?id=GuillaumeLessardMasteringQuantum" target="_blank" class="btn">VIEW_ON_GOOGLE_BOOKS</a>
             </div>
 
-            <!-- Book 2 -->
-            <div class="book-card" data-category="security">
-                <div class="book-icon">📗</div>
-                <h3 class="book-title">Metasploit: The Penetration Tester's Guide</h3>
-                <p class="book-author">by David Kennedy et al.</p>
-                <p class="book-description">
-                    Master the Metasploit Framework for penetration testing and security assessments. 
-                    Includes real-world exploitation scenarios.
-                </p>
-                <div class="book-meta">
-                    <span>Format: EPUB</span>
-                    <span>Size: 12.3 MB</span>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            <div class="book-card" data-category="tech">
+                <div class="book-icon">🎨</div>
+                <h3 class="book-title">Mastering Blender</h3>
+                <p class="book-author">by Guillaume Lessard</p>
+                <p class="book-description">From Basics to Advanced 3D Art and Animation. A comprehensive guide to the ultimate 3D creation suite.</p>
+                <div class="book-meta"><span>Year: 2024</span><span>Series: Tech Mastery</span></div>
+                <a href="https://books.google.com/books?id=GuillaumeLessardMasteringBlender" target="_blank" class="btn">VIEW_ON_GOOGLE_BOOKS</a>
             </div>
 
-            <!-- Book 3 -->
-            <div class="book-card" data-category="programming">
-                <div class="book-icon">📘</div>
-                <h3 class="book-title">Black Hat Python</h3>
-                <p class="book-author">by Justin Seitz</p>
-                <p class="book-description">
-                    Python programming for hackers and pentesters. Learn to build network sniffers, 
-                    manipulate packets, and create custom exploits.
-                </p>
-                <div class="book-meta">
-                    <span>Format: PDF</span>
-                    <span>Size: 5.7 MB</span>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            <div class="book-card" data-category="growth">
+                <div class="book-icon">🔄</div>
+                <h3 class="book-title">The Power of Repetition</h3>
+                <p class="book-author">by Guillaume Lessard</p>
+                <p class="book-description">Transforming Minds Through Words. Part of the Self Growth Mastery Series by iD01t Productions.</p>
+                <div class="book-meta"><span>Year: 2024</span><span>Series: Self Growth</span></div>
+                <a href="https://books.google.com/books?id=GuillaumeLessardPowerOfRepetition" target="_blank" class="btn">VIEW_ON_GOOGLE_BOOKS</a>
             </div>
 
-            <!-- Book 4 -->
-            <div class="book-card" data-category="hacking">
-                <div class="book-icon">📙</div>
-                <h3 class="book-title">The Hacker Playbook 3</h3>
-                <p class="book-author">by Peter Kim</p>
-                <p class="book-description">
-                    Practical guide to penetration testing with the latest techniques. 
-                    Red team tactics and adversarial simulations.
-                </p>
-                <div class="book-meta">
-                    <span>Format: PDF</span>
-                    <span>Size: 15.2 MB</span>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            <div class="book-card" data-category="history">
+                <div class="book-icon">🍔</div>
+                <h3 class="book-title">Bite by Bite</h3>
+                <p class="book-author">by Guillaume Lessard</p>
+                <p class="book-description">The Rise of Fast Food in America. A detailed look at how fast food conquered the world.</p>
+                <div class="book-meta"><span>Year: 2024</span><span>Category: History</span></div>
+                <a href="https://books.google.com/books?id=GuillaumeLessardBiteByBite" target="_blank" class="btn">VIEW_ON_GOOGLE_BOOKS</a>
             </div>
 
-            <!-- Book 5 -->
-            <div class="book-card" data-category="security">
-                <div class="book-icon">📕</div>
-                <h3 class="book-title">Cryptography Engineering</h3>
-                <p class="book-author">by Niels Ferguson et al.</p>
-                <p class="book-description">
-                    Design principles and practical cryptography. Understanding encryption algorithms, 
-                    protocols, and implementation security.
-                </p>
-                <div class="book-meta">
-                    <span>Format: PDF</span>
-                    <span>Size: 9.8 MB</span>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            <div class="book-card" data-category="history">
+                <div class="book-icon">🕊️</div>
+                <h3 class="book-title">Jimmy Carter: A Legacy of Compassion</h3>
+                <p class="book-author">by Guillaume Lessard</p>
+                <p class="book-description">From Compassion and Leadership to a Legacy That Shaped the World.</p>
+                <div class="book-meta"><span>Year: 2025</span><span>Category: Biography</span></div>
+                <a href="https://books.google.com/books?id=GuillaumeLessardJimmyCarter" target="_blank" class="btn">VIEW_ON_GOOGLE_BOOKS</a>
             </div>
 
-            <!-- Book 6 -->
-            <div class="book-card" data-category="manifesto">
-                <div class="book-icon">📓</div>
-                <h3 class="book-title">The Hacker Manifesto</h3>
-                <p class="book-author">by The Mentor</p>
-                <p class="book-description">
-                    Classic underground text defining hacker ethics and philosophy. 
-                    "This is our world now... the world of the electron and the switch."
-                </p>
-                <div class="book-meta">
-                    <span>Format: TXT</span>
-                    <span>Size: 12 KB</span>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
-            </div>
-
-            <!-- Book 7 -->
-            <div class="book-card" data-category="programming">
-                <div class="book-icon">📗</div>
-                <h3 class="book-title">Violent Python</h3>
-                <p class="book-author">by TJ O'Connor</p>
-                <p class="book-description">
-                    A cookbook for hackers, forensic analysts, and security engineers. 
-                    Offensive Python programming techniques.
-                </p>
-                <div class="book-meta">
-                    <span>Format: PDF</span>
-                    <span>Size: 7.4 MB</span>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
-            </div>
-
-            <!-- Book 8 -->
-            <div class="book-card" data-category="hacking">
-                <div class="book-icon">📘</div>
-                <h3 class="book-title">Gray Hat Hacking</h3>
-                <p class="book-author">by Allen Harper et al.</p>
-                <p class="book-description">
-                    The ethical hacker's handbook covering assembly, shellcode, and reverse engineering. 
-                    Comprehensive security testing guide.
-                </p>
-                <div class="book-meta">
-                    <span>Format: PDF</span>
-                    <span>Size: 18.5 MB</span>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
-            </div>
-
-            <!-- Book 9 -->
-            <div class="book-card" data-category="security">
-                <div class="book-icon">📙</div>
-                <h3 class="book-title">The Web Application Hacker's Handbook</h3>
-                <p class="book-author">by Dafydd Stuttard & Marcus Pinto</p>
-                <p class="book-description">
-                    Discovering and exploiting security flaws in web applications. 
-                    SQL injection, XSS, CSRF, and modern attack vectors.
-                </p>
-                <div class="book-meta">
-                    <span>Format: PDF</span>
-                    <span>Size: 14.7 MB</span>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
+            <div class="book-card" data-category="growth">
+                <div class="book-icon">✝️</div>
+                <h3 class="book-title">Jesus: The Eternal Legacy</h3>
+                <p class="book-author">by Guillaume Lessard</p>
+                <p class="book-description">A Journey Through His Life, offering context and reflection that deepen faith.</p>
+                <div class="book-meta"><span>Year: 2024</span><span>Category: Spiritual</span></div>
+                <a href="https://books.google.com/books?id=GuillaumeLessardJesusEternalLegacy" target="_blank" class="btn">VIEW_ON_GOOGLE_BOOKS</a>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <p class="footer-text">DJ iD01t // DIGITAL_LIBRARY // 2026</p>
-        <p style="color: var(--primary-green); font-size: 0.8rem; margin-top: 1rem;">
-            © 2026 DJ iD01t. All systems compromised. All rights reserved.
-        </p>
+        <p>DJ iD01t // DIGITAL_LIBRARY // 2026</p>
     </footer>
 
     <script>
-        // Mobile menu toggle
         document.querySelector('.mobile-toggle').addEventListener('click', function() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
 
-        // Category filter
         const filterBtns = document.querySelectorAll('.filter-btn');
         const bookCards = document.querySelectorAll('.book-card');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', function() {
-                // Remove active class from all buttons
                 filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
                 this.classList.add('active');
-
                 const category = this.getAttribute('data-category');
-
                 bookCards.forEach(card => {
                     if (category === 'all' || card.getAttribute('data-category') === category) {
                         card.style.display = 'block';

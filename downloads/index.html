@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOWNLOADS // DJ iD01t</title>
-    <meta name="description" content="DJ iD01t - Download Archive // Music, Tools & Resources">
+    <title>DOWNLOADS // DJ iD01t - Payload Hub</title>
+    <meta name="description" content="DJ iD01t - Central Download Hub // Music, Ebooks, & Audiobooks">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚠</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
             --dark-bg: #0a0e1a;
             --darker-bg: #050810;
             --electric-blue: #00d4ff;
+            --glitch-pink: #ff0080;
             --text-light: #e0fff0;
             --border-cyan: #00d9a3;
         }
@@ -30,11 +31,7 @@
             background: var(--darker-bg);
             color: var(--text-light);
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -62,25 +59,29 @@
             100% { transform: translateY(100px); }
         }
 
-        .container {
-            max-width: 800px;
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             background: rgba(10, 14, 26, 0.95);
-            border: 3px solid var(--border-cyan);
-            padding: 3rem;
-            box-shadow: 
-                0 0 30px rgba(0, 255, 159, 0.2),
-                inset 0 0 50px rgba(0, 255, 159, 0.05);
-            position: relative;
-            z-index: 2;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 159, 0.3);
         }
 
-        .logo {
-            text-align: center;
-            margin-bottom: 2rem;
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .logo a {
-            font-size: 2rem;
+        .nav-logo {
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-cyan);
             text-decoration: none;
@@ -88,240 +89,187 @@
             font-family: 'Share Tech Mono', monospace;
         }
 
-        .logo a::before {
-            content: '> ';
-            color: var(--primary-green);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: var(--primary-cyan);
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 20px var(--primary-cyan);
-            font-family: 'Share Tech Mono', monospace;
-            text-align: center;
-        }
-
-        h1::before {
-            content: '// ';
-            color: var(--primary-green);
-        }
-
-        .terminal-line {
-            font-size: 1rem;
-            color: var(--primary-green);
-            margin: 1rem 0 2rem;
-            font-family: 'Courier New', monospace;
-            text-align: center;
-        }
-
-        .terminal-line::before {
-            content: '> ';
-            color: var(--primary-cyan);
-        }
-
-        .description {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            text-align: center;
-            line-height: 1.8;
-        }
-
-        .download-links {
+        .nav-links {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin: 2rem 0;
+            gap: 2rem;
+            list-style: none;
         }
 
-        .download-btn {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px solid var(--border-cyan);
+        .nav-links a {
             color: var(--text-light);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .download-btn:hover {
-            border-color: var(--primary-cyan);
-            background: rgba(0, 255, 159, 0.1);
-            box-shadow: 0 0 20px rgba(0, 255, 159, 0.3);
-            transform: translateX(5px);
-        }
-
-        .download-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .download-icon {
-            font-size: 2rem;
-        }
-
-        .download-details h3 {
-            color: var(--primary-cyan);
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .download-details h3::before {
-            content: '> ';
-            color: var(--primary-green);
-        }
-
-        .download-details p {
-            color: var(--text-light);
-            font-size: 0.85rem;
-        }
-
-        .download-arrow {
-            font-size: 1.5rem;
-            color: var(--primary-cyan);
-        }
-
-        .back-link {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(0, 255, 159, 0.2);
-        }
-
-        .back-link a {
-            color: var(--primary-cyan);
             text-decoration: none;
             font-size: 0.9rem;
             transition: all 0.3s;
         }
 
-        .back-link a::before {
-            content: '← ';
-        }
-
-        .back-link a:hover {
+        .nav-links a:hover {
+            color: var(--primary-cyan);
             text-shadow: 0 0 10px var(--primary-cyan);
         }
 
-        .contact {
+        .main-content {
+            padding: 8rem 2rem 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-title {
+            font-size: 4rem;
+            color: var(--primary-cyan);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px var(--primary-cyan);
+            font-family: 'Share Tech Mono', monospace;
             text-align: center;
-            margin-top: 2rem;
-            font-size: 0.85rem;
+        }
+
+        .download-section {
+            background: rgba(10, 14, 26, 0.9);
+            border: 2px solid var(--border-cyan);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-header {
+            font-size: 1.8rem;
+            color: var(--primary-cyan);
+            margin-bottom: 2rem;
+            font-family: 'Share Tech Mono', monospace;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-header::before {
+            content: '> ';
             color: var(--primary-green);
         }
 
-        .contact a {
-            color: var(--electric-blue);
-            text-decoration: none;
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
 
-        .contact a:hover {
-            text-shadow: 0 0 10px var(--electric-blue);
+        .download-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-cyan);
+            padding: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        .download-card:hover {
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 15px rgba(0, 255, 159, 0.2);
+            background: rgba(0, 255, 159, 0.05);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-cyan);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .card-desc {
+            font-size: 0.8rem;
+            color: rgba(224, 255, 240, 0.7);
+        }
+
+        .footer {
+            background: rgba(5, 8, 16, 0.95);
+            border-top: 2px solid var(--primary-cyan);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         @media (max-width: 640px) {
-            .container {
-                padding: 2rem 1.5rem;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            .download-btn {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-            }
-
-            .download-info {
-                flex-direction: column;
-            }
+            .page-title { font-size: 2.5rem; }
+            .download-section { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">
-            <a href="../index.html">DJ_iD01t</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">DJ_iD01t</a>
+            <ul class="nav-links">
+                <li><a href="../music.html">MUSIC</a></li>
+                <li><a href="../ebooks.html">EBOOKS</a></li>
+                <li><a href="../audiobooks.html">AUDIOBOOKS</a></li>
+                <li><a href="../index.html#about">ABOUT</a></li>
+                <li><a href="../index.html#contact">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <h1 class="page-title">PAYLOAD_HUB</h1>
+
+        <div class="download-section">
+            <h2 class="section-header">MUSIC_FILES</h2>
+            <div class="download-grid">
+                <a href="https://music.apple.com/us/album/payload-bin-single/1871370572" target="_blank" class="download-card">
+                    <div class="card-icon">🎵</div>
+                    <div class="card-title">ZERO DAY (Single)</div>
+                    <div class="card-desc">Apple Music / Streaming</div>
+                </a>
+                <a href="#" class="download-card">
+                    <div class="card-icon">💾</div>
+                    <div class="card-title">payload.bin</div>
+                    <div class="card-desc">Bonus Track / MP3 Download</div>
+                </a>
+            </div>
         </div>
 
-        <h1>DOWNLOAD_ARCHIVE</h1>
-        <p class="terminal-line">FILE_TRANSFER_PROTOCOLS_ACTIVE</p>
-
-        <p class="description">
-            Access music releases, tools, and resources. All files are encrypted and verified. 
-            Choose your platform below to initiate download sequence.
-        </p>
-
-        <div class="download-links">
-            <a href="https://music.apple.com/us/album/payload-bin-single/1871370572" target="_blank" class="download-btn">
-                <div class="download-info">
-                    <div class="download-icon">🎵</div>
-                    <div class="download-details">
-                        <h3>ZERO DAY - Apple Music</h3>
-                        <p>Stream or download from Apple Music platform</p>
-                    </div>
-                </div>
-                <div class="download-arrow">→</div>
-            </a>
-
-            <a href="https://youtu.be/RyCNGKk5qXo" target="_blank" class="download-btn">
-                <div class="download-info">
-                    <div class="download-icon">📺</div>
-                    <div class="download-details">
-                        <h3>ZERO DAY - Music Video</h3>
-                        <p>Watch official music video on YouTube</p>
-                    </div>
-                </div>
-                <div class="download-arrow">→</div>
-            </a>
-
-            <a href="#" class="download-btn">
-                <div class="download-info">
-                    <div class="download-icon">🎧</div>
-                    <div class="download-details">
-                        <h3>payload.bin - Audio File</h3>
-                        <p>Direct download // MP3 320kbps // 8.4 MB</p>
-                    </div>
-                </div>
-                <div class="download-arrow">→</div>
-            </a>
-
-            <a href="../ebooks.html" class="download-btn">
-                <div class="download-info">
-                    <div class="download-icon">📚</div>
-                    <div class="download-details">
-                        <h3>Digital Library Access</h3>
-                        <p>Browse and download ebook collection</p>
-                    </div>
-                </div>
-                <div class="download-arrow">→</div>
-            </a>
-
-            <a href="../audiobooks.html" class="download-btn">
-                <div class="download-info">
-                    <div class="download-icon">🎧</div>
-                    <div class="download-details">
-                        <h3>Audio Archive Access</h3>
-                        <p>Stream or download audiobook collection</p>
-                    </div>
-                </div>
-                <div class="download-arrow">→</div>
-            </a>
+        <div class="download-section">
+            <h2 class="section-header">GUILLAUME_LESSARD_WORKS</h2>
+            <div class="download-grid">
+                <a href="../ebooks.html" class="download-card">
+                    <div class="card-icon">📚</div>
+                    <div class="card-title">Digital Library</div>
+                    <div class="card-desc">Access all tech & growth ebooks</div>
+                </a>
+                <a href="../audiobooks.html" class="download-card">
+                    <div class="card-icon">🎧</div>
+                    <div class="card-title">Audio Archive</div>
+                    <div class="card-desc">Access all audio narrations</div>
+                </a>
+            </div>
         </div>
 
-        <div class="contact">
-            <p>Need assistance? Contact: <a href="mailto:contact@djid01t.com">contact@djid01t.com</a></p>
+        <div class="download-section">
+            <h2 class="section-header">SYSTEM_DOCS</h2>
+            <div class="download-grid">
+                <a href="#" class="download-card">
+                    <div class="card-icon">📄</div>
+                    <div class="card-title">ROOT_ACCESS.pdf</div>
+                    <div class="card-desc">LP Design Guidelines</div>
+                </a>
+                <a href="#" class="download-card">
+                    <div class="card-icon">🔑</div>
+                    <div class="card-title">PUBLIC_KEY.asc</div>
+                    <div class="card-desc">PGP Encryption Key</div>
+                </a>
+            </div>
         </div>
+    </main>
 
-        <div class="back-link">
-            <a href="../index.html">RETURN_TO_MAIN_TERMINAL</a>
-        </div>
-    </div>
+    <footer class="footer">
+        <p>DJ iD01t // PAYLOAD_HUB // 2026</p>
+    </footer>
 </body>
 </html>

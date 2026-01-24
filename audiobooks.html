@@ -103,11 +103,6 @@
             font-family: 'Share Tech Mono', monospace;
         }
 
-        .nav-logo::before {
-            content: '> ';
-            color: var(--primary-green);
-        }
-
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -119,22 +114,6 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: all 0.3s;
-        }
-
-        .nav-links a::before {
-            content: '// ';
-            color: var(--primary-green);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-cyan);
-            text-shadow: 0 0 10px var(--primary-cyan);
-        }
-
-        .nav-links a:hover::before {
-            opacity: 1;
         }
 
         .nav-links a.active {
@@ -160,24 +139,6 @@
             text-align: center;
         }
 
-        .page-title::before {
-            content: '// ';
-            color: var(--primary-green);
-        }
-
-        .terminal-line {
-            font-size: 1.2rem;
-            color: var(--primary-green);
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-            text-align: center;
-        }
-
-        .terminal-line::before {
-            content: '> ';
-            color: var(--primary-cyan);
-        }
-
         .audio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -194,25 +155,10 @@
             overflow: hidden;
         }
 
-        .audio-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 159, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
         .audio-card:hover {
             border-color: var(--primary-cyan);
             box-shadow: 0 0 30px rgba(0, 255, 159, 0.3);
             transform: translateY(-5px);
-        }
-
-        .audio-card:hover::before {
-            left: 100%;
         }
 
         .audio-icon {
@@ -226,11 +172,6 @@
             color: var(--primary-cyan);
             margin-bottom: 0.5rem;
             font-family: 'Share Tech Mono', monospace;
-        }
-
-        .audio-title::before {
-            content: '> ';
-            color: var(--primary-green);
         }
 
         .audio-narrator {
@@ -285,29 +226,17 @@
             transition: all 0.3s;
         }
 
-        .play-btn:hover {
-            box-shadow: 0 0 20px var(--primary-cyan);
-            transform: scale(1.1);
-        }
-
         .progress-bar {
             flex: 1;
             height: 4px;
             background: rgba(0, 255, 159, 0.2);
             position: relative;
-            cursor: pointer;
         }
 
         .progress-fill {
             height: 100%;
             background: var(--primary-cyan);
             width: 0%;
-            transition: width 0.1s;
-        }
-
-        .time-display {
-            font-size: 0.8rem;
-            color: var(--primary-green);
         }
 
         .btn {
@@ -355,11 +284,9 @@
             font-family: 'Roboto Mono', monospace;
         }
 
-        .filter-btn:hover,
         .filter-btn.active {
             background: var(--primary-cyan);
             color: var(--darker-bg);
-            border-color: var(--primary-cyan);
         }
 
         .footer {
@@ -369,15 +296,6 @@
             text-align: center;
             position: relative;
             z-index: 2;
-        }
-
-        .footer-text {
-            color: var(--text-light);
-        }
-
-        .footer-text::before {
-            content: '// ';
-            color: var(--primary-green);
         }
 
         .mobile-toggle {
@@ -395,32 +313,12 @@
         }
 
         @media (max-width: 968px) {
-            .page-title {
-                font-size: 2.5rem;
-            }
-
-            .audio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-toggle {
-                display: flex;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .page-title {
-                font-size: 2rem;
-            }
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">DJ_iD01t</a>
@@ -432,249 +330,78 @@
                 <li><a href="index.html#contact">CONTACT</a></li>
             </ul>
             <div class="mobile-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="main-content">
         <h1 class="page-title">AUDIO_ARCHIVE</h1>
-        <p class="terminal-line">STREAMING_PROTOCOLS_ACTIVE</p>
 
-        <!-- Category Filter -->
         <div class="category-filter">
             <button class="filter-btn active" data-category="all">ALL_FILES</button>
-            <button class="filter-btn" data-category="technical">TECHNICAL</button>
-            <button class="filter-btn" data-category="fiction">FICTION</button>
-            <button class="filter-btn" data-category="manifesto">MANIFESTOS</button>
-            <button class="filter-btn" data-category="documentary">DOCUMENTARIES</button>
+            <button class="filter-btn" data-category="tech">TECH_MASTERY</button>
+            <button class="filter-btn" data-category="growth">SELF_GROWTH</button>
+            <button class="filter-btn" data-category="culture">CULTURE_HISTORY</button>
         </div>
 
-        <!-- Audio Grid -->
         <div class="audio-grid">
-            <!-- Audiobook 1 -->
-            <div class="audio-card" data-category="technical">
+            <!-- Guillaume Lessard Audio Works -->
+            <div class="audio-card" data-category="tech">
                 <div class="audio-icon">🎧</div>
-                <h3 class="audio-title">Ghost in the Wires</h3>
-                <p class="audio-narrator">Narrated by Ray Porter</p>
-                <p class="audio-description">
-                    Kevin Mitnick's thrilling autobiography of his life as the world's most wanted hacker. 
-                    From phone phreaking to social engineering exploits.
-                </p>
-                <div class="audio-meta">
-                    <span>Duration: 12h 41m</span>
-                    <span>Format: MP3</span>
-                </div>
+                <h3 class="audio-title">Mastering Quantum Error Correction</h3>
+                <p class="audio-narrator">Author: Guillaume Lessard</p>
+                <p class="audio-description">Audio edition of the groundbreaking guide to safeguarding quantum computation.</p>
+                <div class="audio-meta"><span>Duration: 8h 45m</span><span>Format: MP3</span></div>
                 <div class="audio-player">
                     <div class="player-controls">
                         <button class="play-btn">▶</button>
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                        <span class="time-display">0:00 / 12:41:00</span>
+                        <div class="progress-bar"><div class="progress-fill"></div></div>
                     </div>
                 </div>
                 <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
             </div>
 
-            <!-- Audiobook 2 -->
-            <div class="audio-card" data-category="fiction">
+            <div class="audio-card" data-category="tech">
                 <div class="audio-icon">🎧</div>
-                <h3 class="audio-title">Neuromancer</h3>
-                <p class="audio-narrator">Narrated by Robertson Dean</p>
-                <p class="audio-description">
-                    William Gibson's cyberpunk masterpiece. Case, a washed-up computer hacker, 
-                    is hired for one last job in cyberspace.
-                </p>
-                <div class="audio-meta">
-                    <span>Duration: 10h 31m</span>
-                    <span>Format: MP3</span>
-                </div>
+                <h3 class="audio-title">Mastering Blender</h3>
+                <p class="audio-narrator">Author: Guillaume Lessard</p>
+                <p class="audio-description">Audio walkthrough of 3D art and animation mastery using Blender.</p>
+                <div class="audio-meta"><span>Duration: 10h 12m</span><span>Format: MP3</span></div>
                 <div class="audio-player">
                     <div class="player-controls">
                         <button class="play-btn">▶</button>
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                        <span class="time-display">0:00 / 10:31:00</span>
+                        <div class="progress-bar"><div class="progress-fill"></div></div>
                     </div>
                 </div>
                 <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
             </div>
 
-            <!-- Audiobook 3 -->
-            <div class="audio-card" data-category="technical">
+            <div class="audio-card" data-category="growth">
                 <div class="audio-icon">🎧</div>
-                <h3 class="audio-title">The Art of Deception</h3>
-                <p class="audio-narrator">Narrated by Marc Cashman</p>
-                <p class="audio-description">
-                    Kevin Mitnick reveals the techniques of social engineering. 
-                    How hackers exploit human psychology to breach security.
-                </p>
-                <div class="audio-meta">
-                    <span>Duration: 8h 17m</span>
-                    <span>Format: MP3</span>
-                </div>
+                <h3 class="audio-title">The Power of Repetition</h3>
+                <p class="audio-narrator">Author: Guillaume Lessard</p>
+                <p class="audio-description">Audiobook for transforming minds through the power of words and mindfulness.</p>
+                <div class="audio-meta"><span>Duration: 6h 30m</span><span>Format: MP3</span></div>
                 <div class="audio-player">
                     <div class="player-controls">
                         <button class="play-btn">▶</button>
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                        <span class="time-display">0:00 / 8:17:00</span>
+                        <div class="progress-bar"><div class="progress-fill"></div></div>
                     </div>
                 </div>
                 <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
             </div>
 
-            <!-- Audiobook 4 -->
-            <div class="audio-card" data-category="fiction">
+            <div class="audio-card" data-category="culture">
                 <div class="audio-icon">🎧</div>
-                <h3 class="audio-title">Snow Crash</h3>
-                <p class="audio-narrator">Narrated by Jonathan Davis</p>
-                <p class="audio-description">
-                    Neal Stephenson's vision of a future America where pizza delivery and hacking 
-                    collide in the Metaverse.
-                </p>
-                <div class="audio-meta">
-                    <span>Duration: 17h 3m</span>
-                    <span>Format: MP3</span>
-                </div>
+                <h3 class="audio-title">Bite by Bite</h3>
+                <p class="audio-narrator">Author: Guillaume Lessard</p>
+                <p class="audio-description">The audio history of the rise of fast food in America.</p>
+                <div class="audio-meta"><span>Duration: 9h 15m</span><span>Format: MP3</span></div>
                 <div class="audio-player">
                     <div class="player-controls">
                         <button class="play-btn">▶</button>
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                        <span class="time-display">0:00 / 17:03:00</span>
-                    </div>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
-            </div>
-
-            <!-- Audiobook 5 -->
-            <div class="audio-card" data-category="documentary">
-                <div class="audio-icon">🎧</div>
-                <h3 class="audio-title">The Cuckoo's Egg</h3>
-                <p class="audio-narrator">Narrated by Will Damron</p>
-                <p class="audio-description">
-                    Clifford Stoll's true story of tracking down a KGB hacker through the internet. 
-                    A pioneering tale of cybersecurity.
-                </p>
-                <div class="audio-meta">
-                    <span>Duration: 11h 29m</span>
-                    <span>Format: MP3</span>
-                </div>
-                <div class="audio-player">
-                    <div class="player-controls">
-                        <button class="play-btn">▶</button>
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                        <span class="time-display">0:00 / 11:29:00</span>
-                    </div>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
-            </div>
-
-            <!-- Audiobook 6 -->
-            <div class="audio-card" data-category="manifesto">
-                <div class="audio-icon">🎧</div>
-                <h3 class="audio-title">The Conscience of a Hacker</h3>
-                <p class="audio-narrator">Narrated by Synthetic Voice</p>
-                <p class="audio-description">
-                    The legendary Hacker Manifesto by The Mentor. 
-                    "We explore... and you call us criminals."
-                </p>
-                <div class="audio-meta">
-                    <span>Duration: 0h 8m</span>
-                    <span>Format: MP3</span>
-                </div>
-                <div class="audio-player">
-                    <div class="player-controls">
-                        <button class="play-btn">▶</button>
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                        <span class="time-display">0:00 / 0:08:00</span>
-                    </div>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
-            </div>
-
-            <!-- Audiobook 7 -->
-            <div class="audio-card" data-category="technical">
-                <div class="audio-icon">🎧</div>
-                <h3 class="audio-title">Countdown to Zero Day</h3>
-                <p class="audio-narrator">Narrated by Joe Ochman</p>
-                <p class="audio-description">
-                    Kim Zetter's investigation into Stuxnet, the world's first digital weapon. 
-                    The story of cyber warfare.
-                </p>
-                <div class="audio-meta">
-                    <span>Duration: 16h 49m</span>
-                    <span>Format: MP3</span>
-                </div>
-                <div class="audio-player">
-                    <div class="player-controls">
-                        <button class="play-btn">▶</button>
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                        <span class="time-display">0:00 / 16:49:00</span>
-                    </div>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
-            </div>
-
-            <!-- Audiobook 8 -->
-            <div class="audio-card" data-category="fiction">
-                <div class="audio-icon">🎧</div>
-                <h3 class="audio-title">Daemon</h3>
-                <p class="audio-narrator">Narrated by Jeff Gurner</p>
-                <p class="audio-description">
-                    Daniel Suarez's techno-thriller about an AI daemon that begins to reshape society 
-                    after its creator's death.
-                </p>
-                <div class="audio-meta">
-                    <span>Duration: 18h 19m</span>
-                    <span>Format: MP3</span>
-                </div>
-                <div class="audio-player">
-                    <div class="player-controls">
-                        <button class="play-btn">▶</button>
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                        <span class="time-display">0:00 / 18:19:00</span>
-                    </div>
-                </div>
-                <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
-            </div>
-
-            <!-- Audiobook 9 -->
-            <div class="audio-card" data-category="documentary">
-                <div class="audio-icon">🎧</div>
-                <h3 class="audio-title">We Are Anonymous</h3>
-                <p class="audio-narrator">Narrated by Jay Snyder</p>
-                <p class="audio-description">
-                    Parmy Olson's inside story of Anonymous, LulzSec, and the global cyber insurgency. 
-                    The rise of hacktivism.
-                </p>
-                <div class="audio-meta">
-                    <span>Duration: 13h 44m</span>
-                    <span>Format: MP3</span>
-                </div>
-                <div class="audio-player">
-                    <div class="player-controls">
-                        <button class="play-btn">▶</button>
-                        <div class="progress-bar">
-                            <div class="progress-fill"></div>
-                        </div>
-                        <span class="time-display">0:00 / 13:44:00</span>
+                        <div class="progress-bar"><div class="progress-fill"></div></div>
                     </div>
                 </div>
                 <a href="#" class="btn">DOWNLOAD_ENCRYPTED</a>
@@ -682,22 +409,16 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <p class="footer-text">DJ iD01t // AUDIO_ARCHIVE // 2026</p>
-        <p style="color: var(--primary-green); font-size: 0.8rem; margin-top: 1rem;">
-            © 2026 DJ iD01t. All systems compromised. All rights reserved.
-        </p>
+        <p>DJ iD01t // AUDIO_ARCHIVE // 2026</p>
     </footer>
 
     <script>
-        // Mobile menu toggle
         document.querySelector('.mobile-toggle').addEventListener('click', function() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
 
-        // Category filter
         const filterBtns = document.querySelectorAll('.filter-btn');
         const audioCards = document.querySelectorAll('.audio-card');
 
@@ -705,9 +426,7 @@
             btn.addEventListener('click', function() {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-
                 const category = this.getAttribute('data-category');
-
                 audioCards.forEach(card => {
                     if (category === 'all' || card.getAttribute('data-category') === category) {
                         card.style.display = 'block';
@@ -715,17 +434,6 @@
                         card.style.display = 'none';
                     }
                 });
-            });
-        });
-
-        // Simple play button interaction (visual only)
-        document.querySelectorAll('.play-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                if (this.textContent === '▶') {
-                    this.textContent = '⏸';
-                } else {
-                    this.textContent = '▶';
-                }
             });
         });
     </script>
