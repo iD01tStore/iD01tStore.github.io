@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MUSIC // DJ iD01t - ZERO DAY</title>
-    <meta name="description" content="DJ iD01t - ZERO DAY Single + payload.bin // Stream Now">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚠</text></svg>">
+    <title>DISCOGRAPHY // DJ iD01t - ROOT_ACCESS</title>
+    <meta name="description" content="DJ iD01t - Official Music Discography // Cyberpunk Beats, Industrial Soundscapes, and the ZERO DAY Single">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💿</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
@@ -20,11 +20,7 @@
             --border-cyan: #00d9a3;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Roboto Mono', 'Courier New', monospace;
@@ -36,421 +32,95 @@
         }
 
         body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 255, 159, 0.03) 0px,
-                transparent 1px,
-                transparent 2px,
-                rgba(0, 255, 159, 0.03) 3px
-            );
-            pointer-events: none;
-            z-index: 9999;
-            animation: scanline 8s linear infinite;
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0, 255, 159, 0.03) 0px, transparent 1px, transparent 2px, rgba(0, 255, 159, 0.03) 3px);
+            pointer-events: none; z-index: 9999; animation: scanline 8s linear infinite;
         }
 
-        @keyframes scanline {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100px); }
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 255, 159, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
-        }
+        @keyframes scanline { 0% { transform: translateY(0); } 100% { transform: translateY(100px); } }
 
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(10, 14, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--primary-cyan);
-            box-shadow: 0 0 20px rgba(0, 255, 159, 0.3);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(10, 14, 26, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary-cyan); box-shadow: 0 0 20px rgba(0, 255, 159, 0.3);
         }
 
         .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            max-width: 1400px; margin: 0 auto; padding: 1rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
         }
 
         .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-cyan);
-            text-decoration: none;
-            text-shadow: 0 0 10px var(--primary-cyan);
-            font-family: 'Share Tech Mono', monospace;
+            font-size: 1.5rem; font-weight: 700; color: var(--primary-cyan); text-decoration: none;
+            text-shadow: 0 0 10px var(--primary-cyan); font-family: 'Share Tech Mono', monospace;
         }
 
-        .nav-logo::before {
-            content: '> ';
-            color: var(--primary-green);
-        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
+        .nav-links a.active { color: var(--primary-cyan); text-shadow: 0 0 10px var(--primary-cyan); }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .nav-links a::before {
-            content: '// ';
-            color: var(--primary-green);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-cyan);
-            text-shadow: 0 0 10px var(--primary-cyan);
-        }
-
-        .nav-links a:hover::before {
-            opacity: 1;
-        }
-
-        .nav-links a.active {
-            color: var(--primary-cyan);
-            text-shadow: 0 0 10px var(--primary-cyan);
-        }
-
-        .main-content {
-            padding: 8rem 2rem 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
+        .main-content { padding: 8rem 2rem 4rem; max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
 
         .page-title {
-            font-size: 4rem;
-            color: var(--primary-cyan);
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            text-shadow: 0 0 20px var(--primary-cyan);
+            font-size: 4rem; color: var(--primary-cyan); text-transform: uppercase; margin-bottom: 1rem;
+            text-shadow: 0 0 20px var(--primary-cyan); font-family: 'Share Tech Mono', monospace; text-align: center;
+        }
+
+        .section-header {
+            color: var(--primary-green); font-size: 1.5rem; margin: 4rem 0 2rem;
+            text-transform: uppercase; border-left: 4px solid var(--primary-cyan); padding-left: 1rem;
             font-family: 'Share Tech Mono', monospace;
-            text-align: center;
-        }
-
-        .page-title::before {
-            content: '// ';
-            color: var(--primary-green);
-        }
-
-        .terminal-line {
-            font-size: 1.2rem;
-            color: var(--primary-green);
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-            text-align: center;
-        }
-
-        .terminal-line::before {
-            content: '> ';
-            color: var(--primary-cyan);
         }
 
         .featured-release {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin: 4rem 0;
-            background: rgba(10, 14, 26, 0.9);
-            border: 3px solid var(--border-cyan);
-            padding: 3rem;
-            box-shadow: 
-                0 0 30px rgba(0, 255, 159, 0.2),
-                inset 0 0 50px rgba(0, 255, 159, 0.05);
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 6rem;
+            background: rgba(10, 14, 26, 0.8); border: 2px solid var(--border-cyan); padding: 3rem;
+            box-shadow: 0 0 30px rgba(0, 255, 159, 0.1);
         }
 
-        .album-cover {
-            position: relative;
-            overflow: hidden;
-        }
+        .release-art { width: 100%; border: 2px solid var(--primary-cyan); box-shadow: 0 0 20px rgba(0, 255, 159, 0.3); }
 
-        .album-cover img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border: 2px solid var(--primary-cyan);
-            box-shadow: 0 0 30px rgba(0, 255, 159, 0.3);
-        }
+        .release-info h2 { font-size: 3rem; color: var(--primary-cyan); margin-bottom: 1rem; font-family: 'Share Tech Mono', monospace; }
+        .release-info p { margin-bottom: 2rem; color: var(--electric-blue); }
 
-        .album-info h2 {
-            font-size: 2.5rem;
-            color: var(--primary-cyan);
-            margin-bottom: 1rem;
-            font-family: 'Share Tech Mono', monospace;
+        .streaming-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .stream-btn {
+            padding: 0.8rem 1.5rem; border: 2px solid var(--primary-cyan); color: var(--primary-cyan);
+            text-decoration: none; font-size: 0.8rem; font-weight: 700; transition: all 0.3s;
+            text-transform: uppercase; font-family: 'Roboto Mono', monospace;
         }
+        .stream-btn:hover { background: var(--primary-cyan); color: var(--darker-bg); box-shadow: 0 0 20px var(--primary-cyan); }
 
-        .album-info h2::before {
-            content: '> ';
-            color: var(--primary-green);
+        .discography-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+
+        .album-card {
+            background: rgba(10, 14, 26, 0.9); border: 2px solid var(--border-cyan); padding: 1.5rem;
+            transition: all 0.3s; display: flex; flex-direction: column;
         }
+        .album-card:hover { border-color: var(--primary-cyan); box-shadow: 0 0 30px rgba(0, 255, 159, 0.3); transform: translateY(-5px); }
 
-        .album-meta {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            line-height: 2;
-        }
+        .album-title { font-size: 1.2rem; color: var(--primary-cyan); margin-bottom: 0.5rem; font-family: 'Share Tech Mono', monospace; }
+        .album-meta { font-size: 0.8rem; color: var(--primary-green); margin-bottom: 1.5rem; }
 
-        .album-meta strong {
-            color: var(--primary-cyan);
-        }
+        .spotify-embed { width: 100%; border-radius: 12px; margin-bottom: 1.5rem; }
 
-        .track-list {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .track-list li {
-            padding: 1rem;
-            background: rgba(0, 255, 159, 0.05);
-            border-left: 3px solid var(--primary-cyan);
-            margin-bottom: 1rem;
-            transition: all 0.3s;
-        }
-
-        .track-list li:hover {
-            background: rgba(0, 255, 159, 0.1);
-            border-left-width: 6px;
-            padding-left: 1.5rem;
-        }
-
-        .track-list li::before {
-            content: '▶ ';
-            color: var(--primary-green);
-        }
-
-        .streaming-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: transparent;
-            border: 2px solid var(--primary-cyan);
-            color: var(--primary-cyan);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            transition: all 0.3s;
-            cursor: pointer;
-            font-family: 'Roboto Mono', monospace;
-        }
-
-        .btn:hover {
-            background: var(--primary-cyan);
-            color: var(--darker-bg);
-            box-shadow: 0 0 20px var(--primary-cyan);
-            transform: translateY(-2px);
-        }
-
-        .btn-primary {
-            background: var(--primary-cyan);
-            color: var(--darker-bg);
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--primary-cyan);
-        }
-
+        .video-section { margin: 6rem 0; text-align: center; }
         .video-container {
-            margin: 4rem 0;
-            background: rgba(10, 14, 26, 0.9);
-            border: 3px solid var(--border-cyan);
-            padding: 2rem;
+            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+            max-width: 1000px; margin: 0 auto; border: 2px solid var(--primary-cyan);
             box-shadow: 0 0 30px rgba(0, 255, 159, 0.2);
         }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        .video-container h3 {
-            font-size: 2rem;
-            color: var(--primary-cyan);
-            margin-bottom: 1.5rem;
-            font-family: 'Share Tech Mono', monospace;
-        }
+        .footer { background: rgba(5, 8, 16, 0.95); border-top: 2px solid var(--primary-cyan); padding: 2rem; text-align: center; }
 
-        .video-container h3::before {
-            content: '// ';
-            color: var(--primary-green);
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border: 2px solid var(--primary-cyan);
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .additional-tracks {
-            margin: 4rem 0;
-        }
-
-        .additional-tracks h3 {
-            font-size: 2rem;
-            color: var(--primary-cyan);
-            margin-bottom: 2rem;
-            font-family: 'Share Tech Mono', monospace;
-            text-align: center;
-        }
-
-        .additional-tracks h3::before {
-            content: '// ';
-            color: var(--primary-green);
-        }
-
-        .tracks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .track-card {
-            background: rgba(10, 14, 26, 0.9);
-            border: 2px solid var(--border-cyan);
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .track-card:hover {
-            border-color: var(--primary-cyan);
-            box-shadow: 0 0 30px rgba(0, 255, 159, 0.3);
-            transform: translateY(-5px);
-        }
-
-        .track-card h4 {
-            font-size: 1.5rem;
-            color: var(--primary-cyan);
-            margin-bottom: 1rem;
-        }
-
-        .track-card h4::before {
-            content: '> ';
-            color: var(--primary-green);
-        }
-
-        .track-card p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-        }
-
-        .footer {
-            background: rgba(5, 8, 16, 0.95);
-            border-top: 2px solid var(--primary-cyan);
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-text {
-            color: var(--text-light);
-        }
-
-        .footer-text::before {
-            content: '// ';
-            color: var(--primary-green);
-        }
-
-        .mobile-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-toggle span {
-            width: 25px;
-            height: 2px;
-            background: var(--primary-cyan);
-            transition: all 0.3s;
-        }
-
-        @media (max-width: 968px) {
-            .page-title {
-                font-size: 2.5rem;
-            }
-
-            .featured-release {
-                grid-template-columns: 1fr;
-            }
-
-            .tracks-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-toggle {
-                display: flex;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .page-title {
-                font-size: 2rem;
-            }
-
-            .album-info h2 {
-                font-size: 1.8rem;
-            }
-
-            .featured-release {
-                padding: 1.5rem;
-            }
+        @media (max-width: 900px) {
+            .featured-release { grid-template-columns: 1fr; }
+            .page-title { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">DJ_iD01t</a>
@@ -461,138 +131,85 @@
                 <li><a href="index.html#about">ABOUT</a></li>
                 <li><a href="index.html#contact">CONTACT</a></li>
             </ul>
-            <div class="mobile-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="main-content">
-        <h1 class="page-title">MUSIC_ARCHIVE</h1>
-        <p class="terminal-line">STREAMING_PROTOCOLS_ACTIVE</p>
+        <h1 class="page-title">MUSIC_TRANSMISSIONS</h1>
 
-        <!-- Featured Release: ZERO DAY -->
-        <section class="featured-release">
-            <div class="album-cover">
-                <img src="assets/images/zero-day-cover.jpg" alt="ZERO DAY - DJ iD01t">
-            </div>
-            <div class="album-info">
+        <div class="featured-release">
+            <img src="assets/root_access.jpg" alt="ZERO DAY" class="release-art">
+            <div class="release-info">
                 <h2>ZERO DAY</h2>
-                <div class="album-meta">
-                    <strong>Artist:</strong> DJ iD01t<br>
-                    <strong>Release:</strong> 2026<br>
-                    <strong>Genre:</strong> Industrial / Glitch / Cyberpunk<br>
-                    <strong>Format:</strong> Digital Single
-                </div>
-                
-                <ul class="track-list">
-                    <li>ZERO DAY (Original Mix)</li>
-                    <li>payload.bin (Bonus Track)</li>
-                </ul>
-
+                <p>> LATEST_SIGNAL // SINGLE // 2025</p>
+                <p>A high-energy cyberpunk anthem fusing industrial power with digital emotion. The core signal of the ROOT_ACCESS era.</p>
                 <div class="streaming-links">
-                    <a href="https://music.apple.com/us/album/payload-bin-single/1871370572" target="_blank" class="btn btn-primary">
-                        🎵 APPLE MUSIC
-                    </a>
-                    <a href="https://youtu.be/RyCNGKk5qXo" target="_blank" class="btn">
-                        📺 YOUTUBE
-                    </a>
-                    <a href="#" class="btn">
-                        🎧 SPOTIFY
-                    </a>
-                    <a href="#" class="btn">
-                        ☁️ SOUNDCLOUD
-                    </a>
+                    <a href="https://open.spotify.com/album/6O2ddjwvmpvwXEW9ayulVv" class="stream-btn">SPOTIFY</a>
+                    <a href="https://music.apple.com/us/album/payload-bin-single/1871370572" class="stream-btn">APPLE_MUSIC</a>
+                    <a href="https://youtu.be/RyCNGKk5qXo" class="stream-btn">YOUTUBE</a>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Music Video -->
-        <section class="video-container">
-            <h3>MUSIC_VIDEO // ZERO_DAY</h3>
-            <div class="video-wrapper">
-                <iframe 
-                    src="https://www.youtube.com/embed/RyCNGKk5qXo" 
-                    title="DJ iD01t - ZERO DAY (Official Music Video)" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+        <h2 class="section-header">FULL_DISCOGRAPHY</h2>
+        <div class="discography-grid">
+            <div class="album-card">
+                <h3 class="album-title">Cosmic Echoes</h3>
+                <p class="album-meta">Album // 2025</p>
+                <iframe class="spotify-embed" src="https://open.spotify.com/embed/album/5AWc3Fx9oC03E3vKEsnTIi?utm_source=generator&theme=0" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <a href="https://open.spotify.com/album/5AWc3Fx9oC03E3vKEsnTIi" class="stream-btn">OPEN_IN_SPOTIFY</a>
             </div>
-        </section>
 
-        <!-- Additional Tracks -->
-        <section class="additional-tracks">
-            <h3>ADDITIONAL_PAYLOADS</h3>
-            <div class="tracks-grid">
-                <div class="track-card">
-                    <h4>payload.bin</h4>
-                    <p>
-                        Experimental glitch composition featuring corrupted data streams and system failure sounds. 
-                        A sonic representation of zero-day exploitation.
-                    </p>
-                    <a href="https://music.apple.com/us/album/payload-bin-single/1871370572" target="_blank" class="btn btn-primary">
-                        STREAM_NOW
-                    </a>
-                </div>
-
-                <div class="track-card">
-                    <h4>ROOT_ACCESS (Coming Soon)</h4>
-                    <p>
-                        Full LP featuring 12 tracks of industrial cyberpunk soundscapes. 
-                        Scheduled for deployment Q2 2026.
-                    </p>
-                    <a href="#" class="btn">
-                        PRE_ORDER
-                    </a>
-                </div>
-
-                <div class="track-card">
-                    <h4>EXPLOIT_KIT (Remix Pack)</h4>
-                    <p>
-                        Community remixes and reinterpretations of ZERO DAY. 
-                        Featuring underground producers and sound designers.
-                    </p>
-                    <a href="#" class="btn">
-                        COMING_SOON
-                    </a>
-                </div>
+            <div class="album-card">
+                <h3 class="album-title">Anura Voidwalker</h3>
+                <p class="album-meta">DMT Chronicles // 2025</p>
+                <iframe class="spotify-embed" src="https://open.spotify.com/embed/album/2uKqGuwXpsc4DAttb7KOOe?utm_source=generator&theme=0" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <a href="https://open.spotify.com/album/2uKqGuwXpsc4DAttb7KOOe" class="stream-btn">OPEN_IN_SPOTIFY</a>
             </div>
-        </section>
 
-        <!-- Embedded Audio Players -->
-        <section class="video-container">
-            <h3>DIRECT_STREAM // payload.bin</h3>
-            <p class="terminal-line">AUDIO_PROTOCOL_INITIALIZED</p>
-            <div style="margin-top: 2rem;">
-                <p style="color: var(--text-light); text-align: center; margin-bottom: 1rem;">
-                    Stream directly from Apple Music:
-                </p>
-                <div style="text-align: center;">
-                    <a href="https://music.apple.com/us/album/payload-bin-single/1871370572" target="_blank" class="btn btn-primary">
-                        🎵 OPEN IN APPLE MUSIC
-                    </a>
-                </div>
+            <div class="album-card">
+                <h3 class="album-title">Code of Longing</h3>
+                <p class="album-meta">Single // 2025</p>
+                <iframe class="spotify-embed" src="https://open.spotify.com/embed/album/45L5zOJuFinFVg3t2yX7n6?utm_source=generator&theme=0" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <a href="https://open.spotify.com/album/45L5zOJuFinFVg3t2yX7n6" class="stream-btn">OPEN_IN_SPOTIFY</a>
             </div>
-        </section>
+
+            <div class="album-card">
+                <h3 class="album-title">Digital Mirage</h3>
+                <p class="album-meta">Single // 2025</p>
+                <iframe class="spotify-embed" src="https://open.spotify.com/embed/album/6UvvOQYgciDlEd6chX05M2?utm_source=generator&theme=0" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <a href="https://open.spotify.com/album/6UvvOQYgciDlEd6chX05M2" class="stream-btn">OPEN_IN_SPOTIFY</a>
+            </div>
+
+            <div class="album-card">
+                <h3 class="album-title">Final Transmission</h3>
+                <p class="album-meta">Album // 2024</p>
+                <iframe class="spotify-embed" src="https://open.spotify.com/embed/album/37i9dQZF1E4wqveltZbpDk?utm_source=generator&theme=0" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <a href="https://open.spotify.com/album/37i9dQZF1E4wqveltZbpDk" class="stream-btn">OPEN_IN_SPOTIFY</a>
+            </div>
+        </div>
+
+        <h2 class="section-header">VISUAL_SIGNALS</h2>
+        <div class="video-section">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/RyCNGKk5qXo" title="DJ iD01t - ZERO DAY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <h2 class="section-header">PAYLOAD_AUDIO</h2>
+        <div class="album-card" style="max-width: 600px; margin: 0 auto;">
+            <h3 class="album-title">payload.bin</h3>
+            <p class="album-meta">Direct Transmission // Exclusive</p>
+            <audio controls style="width: 100%; margin: 1rem 0;">
+                <source src="assets/payload.bin.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <p style="font-size: 0.8rem; color: var(--primary-green);">> RAW_DATA_STREAMING_ACTIVE</p>
+        </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <p class="footer-text">DJ iD01t // MUSIC_ARCHIVE // 2026</p>
-        <p style="color: var(--primary-green); font-size: 0.8rem; margin-top: 1rem;">
-            © 2026 DJ iD01t. All systems compromised. All rights reserved.
-        </p>
+        <p>DJ iD01t // MUSIC_TRANSMISSIONS // 2026 // iD01t PRODUCTIONS</p>
     </footer>
-
-    <script>
-        document.querySelector('.mobile-toggle').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-    </script>
 </body>
 </html>
